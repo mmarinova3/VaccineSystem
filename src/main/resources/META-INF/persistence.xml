@@ -7,8 +7,8 @@
 
         <class>com.winery.entities.Role</class>
         <class>com.winery.entities.User</class>
-        <class>com.vaccine.vaccinesystem.Model.Vaccine</class>
-        <class>com.vaccine.vaccinesystem.Model.PersonVaccine</class>
+        <class>com.vaccine.Model.Entity.Vaccine</class>
+        <class>com.vaccine.Model.Entity.PersonVaccine</class>
 
 
         <properties>

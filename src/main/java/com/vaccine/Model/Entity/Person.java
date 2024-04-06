@@ -1,4 +1,4 @@
-package com.vaccine.vaccinesystem.Model;
+package com.vaccine.Model.Entity;
 
 import jakarta.persistence.*;
 import org.hibernate.annotations.JdbcTypeCode;

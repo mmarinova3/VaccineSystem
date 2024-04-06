@@ -7,6 +7,9 @@ module com.vaccine.vaccinesystem {
     requires org.controlsfx.controls;
 
 
-    opens com.vaccine.vaccinesystem to javafx.fxml;
-    exports com.vaccine.vaccinesystem;
+    opens com.vaccine to javafx.fxml;
+    exports com.vaccine.VaccineSystem;
+    opens com.vaccine.VaccineSystem to javafx.fxml;
+    exports com.vaccine.Controller;
+    opens com.vaccine.Controller to javafx.fxml;
 }
