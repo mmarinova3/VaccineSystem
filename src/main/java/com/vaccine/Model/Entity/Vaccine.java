@@ -5,7 +5,7 @@ import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
 @Entity
-@Table(name = "vaccine")
+@Table(name = "Vaccine")
 public class Vaccine {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)

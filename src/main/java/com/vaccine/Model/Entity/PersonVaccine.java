@@ -3,7 +3,7 @@ package com.vaccine.Model.Entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "person_vaccine")
+@Table(name = "PersonVaccine")
 public class PersonVaccine {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)

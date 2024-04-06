@@ -7,7 +7,7 @@ import org.hibernate.type.SqlTypes;
 import java.io.Serializable;
 
 
-@Table(name = "user", indexes = {
+@Table(name = "User", indexes = {
         @Index(name = "id", columnList = "id", unique = true),
         @Index(name = "username", columnList = "username", unique = true),
         @Index(name = "password", columnList = "password"),
