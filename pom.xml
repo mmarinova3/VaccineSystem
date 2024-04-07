@@ -77,7 +77,19 @@
             <artifactId>persistence-api</artifactId>
             <version>1.0.2</version>
         </dependency>
+
+
+        <!-- https://mvnrepository.com/artifact/org.springframework/spring-tx -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-tx</artifactId>
+            <version>6.1.5</version>
+        </dependency>
+
+
     </dependencies>
+
+
 
     <build>
         <plugins>

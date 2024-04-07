@@ -1,24 +1,30 @@
 package com.vaccine.Model.DAO;
 
 import com.vaccine.Model.Entity.Person;
-import com.vaccine.Model.Entity.User;
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityTransaction;
-import jakarta.persistence.PersistenceException;
-import jakarta.persistence.TypedQuery;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.PersistenceException;
+import jakarta.persistence.TypedQuery;
 import java.util.List;
 import java.util.Optional;
 
-public class PersonDAO implements DAO<Person>{
-    private final static Logger log = LogManager.getLogger(User.class);
-    private final EntityManager entityManager;
+@Repository
+@Transactional
+public class PersonDAO implements DAO<Person> {
 
+    private final EntityManager entityManager;
+    private static final Logger log = LogManager.getLogger(PersonDAO.class);
+
+    @Autowired
     public PersonDAO(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
+
     @Override
     public Optional<Person> get(int id) {
         try {
@@ -42,49 +48,31 @@ public class PersonDAO implements DAO<Person>{
 
     @Override
     public void save(Person person) {
-        EntityTransaction transaction = entityManager.getTransaction();
         try {
-            transaction.begin();
             entityManager.persist(person);
-            transaction.commit();
         } catch (Exception e) {
-            if (transaction.isActive()) {
-                transaction.rollback();
-                log.error("Person save error: " + e.getMessage(), e);
-            }
+            log.error("Person save error: " + e.getMessage(), e);
+            throw new PersistenceException(e);
         }
     }
 
     @Override
     public void update(Person person, String[] params) {
-        EntityTransaction transaction = entityManager.getTransaction();
         try {
-            transaction.begin();
             entityManager.merge(person);
-            entityManager.flush();
-            transaction.commit();
-        } catch (PersistenceException e) {
-            throw e;
-        } catch (Throwable e) {
-            if (transaction.isActive()) {
-                transaction.rollback();
-                log.error("Person update error: " + e.getMessage(), e);
-            }
+        } catch (Exception e) {
+            log.error("Person update error: " + e.getMessage(), e);
+            throw new PersistenceException(e);
         }
     }
 
     @Override
     public void delete(Person person) {
-        EntityTransaction transaction = entityManager.getTransaction();
         try {
-            transaction.begin();
             entityManager.remove(person);
-            transaction.commit();
         } catch (Exception e) {
-            if (transaction.isActive()) {
-                transaction.rollback();
-                log.error("Person delete error: " + e.getMessage(), e);
-            }
+            log.error("Person delete error: " + e.getMessage(), e);
+            throw new PersistenceException(e);
         }
     }
 }

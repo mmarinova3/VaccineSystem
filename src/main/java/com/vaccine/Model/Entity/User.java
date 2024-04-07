@@ -8,10 +8,10 @@ import java.io.Serializable;
 
 
 @Table(name = "User", indexes = {
-        @Index(name = "id", columnList = "id", unique = true),
+        @Index(name = "userId", columnList = "userId", unique = true),
         @Index(name = "username", columnList = "username", unique = true),
         @Index(name = "password", columnList = "password"),
-        @Index(name = "fk_role_id", columnList = "role_id")
+        @Index(name = "email", columnList = "email")
 })
 
 @Entity
@@ -19,7 +19,7 @@ public class User implements Serializable{
 
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "id", nullable = false)
+    @Column(name = "userId", nullable = false)
     private Integer id;
 
 
@@ -34,8 +34,6 @@ public class User implements Serializable{
     private String email;
 
 
-
-
     public User() {
     }
 
@@ -43,7 +41,6 @@ public class User implements Serializable{
         this.id = id;
         this.username = username;
         this.password = password;
-
     }
 
     public Integer getId() {

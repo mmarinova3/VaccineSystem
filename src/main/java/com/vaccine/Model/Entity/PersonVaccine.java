@@ -3,38 +3,52 @@ package com.vaccine.Model.Entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "PersonVaccine")
+
+@Table(name = "PersonVaccine", indexes = {
+        @Index(name = "id", columnList = "id", unique = true),
+        @Index(name = "fk_personId", columnList = "personId"),
+        @Index(name = "fk_vaccineId", columnList = "vaccineId"),
+        @Index(name = "note", columnList = "note"),
+})
 public class PersonVaccine {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "id", nullable = false)
     private Integer id;
 
-    @OneToMany
-    @Column(name = "personId", nullable = false)
-    private Integer personId;
+    @ManyToOne
+    @JoinColumn(name = "fk_personId", referencedColumnName = "personId")
+    private Person person;
 
-    @OneToMany
-    @Column(name = "vaccineId", nullable = false)
-    private Integer vaccineID;
+    @ManyToOne
+    @JoinColumn(name = "fk_vaccineId", referencedColumnName = "vaccineId")
+    private Vaccine vaccine;
 
     @Column(name = "note")
     private String note;
 
-    public Integer getPersonId() {
-        return personId;
+    public Integer getId() {
+        return id;
     }
 
-    public void setPersonId(Integer personId) {
-        this.personId = personId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
-    public Integer getVaccineID() {
-        return vaccineID;
+    public Person getPerson() {
+        return person;
     }
 
-    public void setVaccineID(Integer vaccineID) {
-        this.vaccineID = vaccineID;
+    public void setPerson(Person person) {
+        this.person = person;
+    }
+
+    public Vaccine getVaccine() {
+        return vaccine;
+    }
+
+    public void setVaccine(Vaccine vaccine) {
+        this.vaccine = vaccine;
     }
 
     public String getNote() {
@@ -43,13 +57,5 @@ public class PersonVaccine {
 
     public void setNote(String note) {
         this.note = note;
-    }
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
     }
 }

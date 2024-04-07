@@ -3,13 +3,14 @@ package com.vaccine.Model.Entity;
 import jakarta.persistence.*;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
+import org.hibernate.usertype.UserTypeSupport;
 
 import java.io.Serializable;
 import java.util.Date;
 
 @Table(name = "Person", indexes = {
-        @Index(name = "id", columnList = "id", unique = true),
-        @Index(name = "fkUserId", columnList = "userId", unique = true),
+        @Index(name = "personId", columnList = "personId", unique = true),
+        @Index(name = "fk_userId", columnList = "userId", unique = true),
         @Index(name = "name", columnList = "name"),
         @Index(name = "dateOfBirth", columnList = "dateOfBirth"),
         @Index(name = "relationWithUser", columnList = "relationWithUser")
@@ -19,14 +20,13 @@ import java.util.Date;
 public class Person implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "id", nullable = false)
+    @Column(name = "personId", nullable = false)
     @JdbcTypeCode(SqlTypes.INTEGER)
     private int id;
 
     @ManyToOne
-    @Column(name = "userId", nullable = false, length = 50)
-    @JdbcTypeCode(SqlTypes.INTEGER)
-    private int userId;
+    @JoinColumn(name = "userId", nullable = false)
+    private User user;
 
     @Column(name = "name", nullable = false, length = 50)
     @JdbcTypeCode(SqlTypes.VARCHAR)
@@ -49,12 +49,12 @@ public class Person implements Serializable {
         this.id = id;
     }
 
-    public int getUserId() {
-        return userId;
+    public User getUserId() {
+        return user;
     }
 
-    public void setUserId(int userId) {
-        this.userId = userId;
+    public void setUserId(User user) {
+        this.user = user;
     }
 
     public String getName() {

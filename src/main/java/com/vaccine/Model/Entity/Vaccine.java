@@ -5,14 +5,23 @@ import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
 @Entity
-@Table(name = "Vaccine")
+@Table(name = "Vaccine", indexes = {
+        @Index(name = "vaccineId", columnList = "vaccineId", unique = true),
+        @Index(name = "vaccineName", columnList = "vaccineName"),
+        @Index(name = "info", columnList = "info"),
+        @Index(name = "vaccineAge", columnList = "vaccineAge"),
+        @Index(name = "period", columnList = "period"),
+        @Index(name = "doseNumber", columnList = "doseNumber"),
+        @Index(name = "isMade", columnList = "isMade")
+})
+
 public class Vaccine {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    @Column(name = "id", nullable = false)
+    @Column(name = "vaccineId", nullable = false)
     private Integer id;
 
-    @Column(name = "vaccine_name", length = 50)
+    @Column(name = "vaccineName", length = 50)
     @JdbcTypeCode(SqlTypes.VARCHAR)
     private String vaccineName;
 
@@ -21,7 +30,7 @@ public class Vaccine {
     @JdbcTypeCode(SqlTypes.LONG32VARCHAR)
     private String info;
 
-    @Column(name = "vaccine_age")
+    @Column(name = "vaccineAge")
     @JdbcTypeCode(SqlTypes.INTEGER)
     private Integer vaccineAge;
 
@@ -29,9 +38,13 @@ public class Vaccine {
     @JdbcTypeCode(SqlTypes.INTEGER)
     private Integer period;
 
-    @Column(name = "dose_number")
+    @Column(name = "doseNumber")
     @JdbcTypeCode(SqlTypes.INTEGER)
     private Integer doseNumber;
+
+    @Column(name = "isMade")
+    @JdbcTypeCode(SqlTypes.BOOLEAN)
+    private boolean isMade;
 
     public Integer getDoseNumber() {
         return doseNumber;
