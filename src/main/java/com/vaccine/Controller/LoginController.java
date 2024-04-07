@@ -53,7 +53,7 @@ public class LoginController {
 
             if (currentUser != null) {
                 infoLabel.setText("Successful");
-                app.changeScene("/com/vaccine/vac-main.fxml",1000,600,true);
+                app.changeScene("/com/vaccine/fxml/vac-main.fxml",1000,600,true);
             } else {
                 infoLabel.setText("Invalid username/password");
             }
@@ -65,13 +65,13 @@ public class LoginController {
 
     @FXML
     protected void onRegisterButtonClick(){
-        SceneNavigator.navigateTo("/com/vaccine/vac-register.view.fxml", loginAnchor);
+        SceneNavigator.navigateTo("/com/vaccine/fxml/vac-register.view.fxml", loginAnchor);
 
     }
 
     @FXML
     protected void onForgetPasswordButtonClick(){
-        SceneNavigator.navigateTo("/com/vaccine/vac-change-password.fxml", loginAnchor);
+        SceneNavigator.navigateTo("/com/vaccine/fxml/vac-change-password.fxml", loginAnchor);
 
     }
 }

@@ -10,6 +10,6 @@ public class ForgetPasswordController {
     @FXML
     protected void onGoBackButtonClick() throws IOException {
         Main app= new Main();
-        app.changeScene("/com/vaccine/vac-login-view.fxml",747, 438,false);
+        app.changeScene("/com/vaccine/fxml/vac-login-view.fxml",747, 438,false);
     }
 }
