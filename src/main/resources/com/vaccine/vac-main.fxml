@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.shape.Circle?>
+
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="603.0" prefWidth="785.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.vaccine.Controller.HomePageController">
+   <left>
+      <AnchorPane prefHeight="564.0" prefWidth="88.0" style="-fx-background-color: #b4a6ab;" BorderPane.alignment="CENTER">
+         <children>
+            <Circle fill="#dddddd" layoutX="42.0" layoutY="44.0" radius="32.0" stroke="#946e83" strokeType="INSIDE" strokeWidth="3.0" />
+            <Circle fill="#dddddd" layoutX="44.0" layoutY="120.0" radius="32.0" stroke="#946e83" strokeType="INSIDE" strokeWidth="3.0" />
+            <Circle fill="#dddddd" layoutX="44.0" layoutY="194.0" radius="32.0" stroke="#946e83" strokeType="INSIDE" strokeWidth="3.0" />
+            <Circle fill="#dddddd" layoutX="44.0" layoutY="268.0" radius="32.0" stroke="#946e83" strokeType="INSIDE" strokeWidth="3.0" />
+            <ImageView fitHeight="40.0" fitWidth="41.0" layoutX="22.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/icons8-person-26.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="52.0" fitWidth="45.0" layoutX="22.0" layoutY="98.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/icons8-multicultural-people-50.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="43.0" fitWidth="40.0" layoutX="24.0" layoutY="174.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/icons8-calendar-50.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="68.0" fitWidth="47.0" layoutX="22.0" layoutY="242.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/icons8-syringe-50.png" />
+               </image>
+            </ImageView>
+         </children>
+      </AnchorPane>
+   </left>
+   <top>
+      <AnchorPane prefHeight="39.0" prefWidth="785.0" style="-fx-background-color: #946e83;" BorderPane.alignment="CENTER" />
+   </top>
+   <center>
+      <ScrollPane prefHeight="559.0" prefWidth="665.0" BorderPane.alignment="CENTER">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="561.0" prefWidth="697.0" style="-fx-background-color: #ddf8e8;" />
+        </content>
+      </ScrollPane>
+   </center>
+</BorderPane>
