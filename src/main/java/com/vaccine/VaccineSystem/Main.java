@@ -1,19 +1,15 @@
 package com.vaccine.VaccineSystem;
 
-import com.vaccine.Model.DAO.UserDAO;
-import jakarta.persistence.EntityManager;
+import com.vaccine.Utils.Connection;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
-import java.util.Objects;
-
 
 public class Main extends Application {
 
@@ -23,10 +19,10 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws IOException {
         stage = primaryStage;
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/com/vaccine/hello-view.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/com/vaccine/vac-login-view.fxml"));
         Parent root = fxmlLoader.load();
-        Scene scene = new Scene(root, 506, 312);
-        primaryStage.setTitle("Vaccine System");
+        Scene scene = new Scene(root);
+        primaryStage.setTitle("VaccTrace");
         primaryStage.setResizable(false);
         //primaryStage.initStyle(StageStyle.TRANSPARENT);
         primaryStage.setScene(scene);
@@ -34,7 +30,31 @@ public class Main extends Application {
     }
 
 
+
+    public void changeScene(String fxml, double width, double height, boolean resizable) throws IOException {
+        log.info("Changing scene to: {}", fxml);
+        FXMLLoader loader = new FXMLLoader(getClass().getResource(fxml));
+        Parent pane = loader.load();
+        Scene scene = new Scene(pane, width, height);
+        stage.setScene(scene);
+        stage.setResizable(resizable);
+        log.info("Scene changed successfully.");
+    }
+
+    @Override
+    public void stop() {
+        try {
+            log.info("Application stopping...");
+        } catch (Exception e) {
+            log.error("Error during application stop: {}", e.getMessage(), e);
+        } finally {
+            Connection.closeEMF();
+            log.info("Entity Manager Factory closed.");
+        }
+    }
+
+
     public static void main(String[] args) {
-        launch();
+        launch(args);
     }
 }

@@ -5,6 +5,8 @@ import com.vaccine.Model.Entity.User;
 import com.vaccine.Utils.Session;
 
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.NoResultException;
+import jakarta.persistence.Query;
 
 import java.util.List;
 import java.util.Optional;
@@ -47,6 +49,12 @@ public class UserService {
         userDao.delete(user);
     }
 
-
+    public User validateLogin(String enteredUsername, String enteredPassword) {
+        User user = userDao.checkLogin(enteredUsername, enteredPassword);
+        if (user != null) {
+            session.setUser(user);
+        }
+        return user;
+    }
 }
 

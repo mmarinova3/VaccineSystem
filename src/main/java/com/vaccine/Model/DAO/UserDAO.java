@@ -85,6 +85,20 @@ public class UserDAO implements DAO<User> {
         }
     }
 
+    public User checkLogin(String enteredUsername, String enteredPassword) {
+        try {
+            Query query = entityManager.createQuery("SELECT u FROM User u WHERE u.username = :username AND u.password = :password");
+            query.setParameter("username", enteredUsername);
+            query.setParameter("password", enteredPassword);
+            return (User) query.getSingleResult();
+        } catch (NoResultException e) {
+            log.error("User login validation error: " + e.getMessage(), e);
+            return null;
+        } catch (Exception e) {
+            log.error("Unexpected error during user login validation: " + e.getMessage(), e);
+            return null;
+        }
+    }
 
 }
 
