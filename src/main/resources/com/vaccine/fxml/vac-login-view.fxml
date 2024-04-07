@@ -44,7 +44,7 @@
                   <Circle fill="#ffd495" layoutX="247.0" layoutY="223.0" radius="5.0" stroke="#00000007" strokeType="INSIDE" />
                   <ImageView fitHeight="163.0" fitWidth="141.0" layoutX="112.0" layoutY="108.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@images/360_F_281648504_kpuzmc5PUuLiOcIs5ghnUp8nFaHIZV6A.png" />
+                        <Image url="@../images/360_F_281648504_kpuzmc5PUuLiOcIs5ghnUp8nFaHIZV6A.png" />
                      </image>
                   </ImageView>
                   <Text fill="WHITE" fontSmoothingType="LCD" layoutX="34.0" layoutY="333.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Stay Informed, Stay Protected">

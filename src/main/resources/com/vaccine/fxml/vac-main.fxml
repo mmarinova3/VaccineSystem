@@ -18,22 +18,22 @@
             <Circle fill="#dddddd" layoutX="44.0" layoutY="268.0" radius="32.0" stroke="#946e83" strokeType="INSIDE" strokeWidth="3.0" />
             <ImageView fitHeight="40.0" fitWidth="41.0" layoutX="22.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/icons8-person-26.png" />
+                  <Image url="@../images/icons8-person-26.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="52.0" fitWidth="45.0" layoutX="22.0" layoutY="98.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/icons8-multicultural-people-50.png" />
+                  <Image url="@../images/icons8-multicultural-people-50.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="43.0" fitWidth="40.0" layoutX="24.0" layoutY="174.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/icons8-calendar-50.png" />
+                  <Image url="@../images/icons8-calendar-50.png" />
                </image>
             </ImageView>
             <ImageView fitHeight="68.0" fitWidth="47.0" layoutX="22.0" layoutY="242.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@images/icons8-syringe-50.png" />
+                  <Image url="@../images/icons8-syringe-50.png" />
                </image>
             </ImageView>
          </children>
