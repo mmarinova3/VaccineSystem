@@ -11,13 +11,15 @@ module com.vaccine.vaccinesystem {
     requires spring.context;
     requires spring.tx;
 
-    exports  com.vaccine.Model.Entity;
+    exports com.vaccine.Model.Entity;
     opens com.vaccine.Model.Entity to org.hibernate.orm.core;
-    opens com.vaccine to javafx.fxml;
+
     exports com.vaccine.VaccineSystem;
     opens com.vaccine.VaccineSystem to javafx.fxml;
+
     exports com.vaccine.Controller;
-    opens com.vaccine.Controller to javafx.fxml,org.hibernate.orm.core;
+    opens com.vaccine.Controller to javafx.fxml;
+
     exports com.vaccine.Service;
-    opens com.vaccine.Service to javafx.fxml,org.hibernate.orm.core;
+    opens com.vaccine.Service to javafx.fxml;
 }

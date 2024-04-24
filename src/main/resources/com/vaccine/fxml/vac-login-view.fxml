@@ -22,11 +22,9 @@
                <children>
                   <HBox layoutX="14.0" layoutY="14.0" prefHeight="18.0" prefWidth="55.0">
                      <children>
-                        <Circle fill="#d01111" radius="8.0" stroke="WHITE" strokeType="INSIDE" />
+                        <Circle accessibleRole="BUTTON" fill="#d01111" onMouseClicked="#closeApp" radius="8.0" stroke="WHITE" strokeType="INSIDE" />
                         <ImageView fitHeight="17.0" fitWidth="3.0" pickOnBounds="true" preserveRatio="true" />
-                        <Circle fill="#c4d01f" radius="8.0" stroke="WHITE" strokeType="INSIDE" />
-                        <ImageView fitHeight="17.0" fitWidth="3.0" pickOnBounds="true" preserveRatio="true" />
-                        <Circle fill="#5dd020" radius="8.0" stroke="WHITE" strokeType="INSIDE" />
+                        <Circle fill="#5dd020" onMouseClicked="#minimizeApp" radius="8.0" stroke="WHITE" strokeType="INSIDE" />
                      </children>
                   </HBox>
                   <Text fill="WHITE" fontSmoothingType="LCD" layoutX="65.0" layoutY="302.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VaxTrace" wrappingWidth="224.13671875">

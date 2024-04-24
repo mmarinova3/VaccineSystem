@@ -2,6 +2,7 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -17,20 +18,26 @@
                   <Font name="Calibri Bold" size="27.0" />
                </font>
             </Text>
-            <PasswordField layoutX="43.0" layoutY="254.0" prefHeight="47.0" prefWidth="287.0" promptText="PASSWORD" />
-            <TextField layoutX="43.0" layoutY="85.0" prefHeight="45.0" prefWidth="286.0" promptText="USERNAME" />
-            <Button layoutX="50.0" layoutY="313.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="273.0" style="-fx-background-color: #615055;" text="Sign Up" textFill="WHITE">
+            <PasswordField fx:id="passwordField" layoutX="43.0" layoutY="281.0" prefHeight="36.0" prefWidth="287.0" promptText="PASSWORD" />
+            <TextField fx:id="usernameField" layoutX="43.0" layoutY="98.0" prefHeight="36.0" prefWidth="286.0" promptText="USERNAME" />
+            <Button layoutX="50.0" layoutY="338.0" mnemonicParsing="false" onAction="#onGoRegisterButtonClick" prefHeight="36.0" prefWidth="273.0" style="-fx-background-color: #615055;" text="Sign Up" textFill="WHITE">
                <font>
                   <Font name="Calibri Bold" size="16.0" />
                </font>
             </Button>
-            <TextField layoutX="43.0" layoutY="141.0" prefHeight="45.0" prefWidth="286.0" promptText="E-MAIL" />
-            <DatePicker layoutX="42.0" layoutY="199.0" prefHeight="45.0" prefWidth="286.0" promptText="BIRTHDAY" />
-            <Button layoutX="50.0" layoutY="360.0" mnemonicParsing="false" onAction="#onGoBackButtonClick" prefHeight="36.0" prefWidth="273.0" style="-fx-background-color: #ddd6d8;" text="GO TO LOGIN " textFill="WHITE" textOverrun="CENTER_WORD_ELLIPSIS">
+            <TextField fx:id="emailField" layoutX="43.0" layoutY="144.0" prefHeight="36.0" prefWidth="286.0" promptText="E-MAIL" />
+            <DatePicker fx:id="birthday" layoutX="43.0" layoutY="235.0" prefHeight="36.0" prefWidth="286.0" promptText="BIRTHDAY" />
+            <Button layoutX="50.0" layoutY="383.0" mnemonicParsing="false" onAction="#onGoBackButtonClick" prefHeight="36.0" prefWidth="273.0" style="-fx-background-color: #ddd6d8;" text="GO TO LOGIN " textFill="WHITE" textOverrun="CENTER_WORD_ELLIPSIS">
                <font>
                   <Font name="System Bold" size="14.0" />
                </font>
             </Button>
+            <Label fx:id="infoLabel" layoutX="45.0" layoutY="73.0" prefHeight="17.0" prefWidth="287.0" textFill="#e80f0f">
+               <font>
+                  <Font size="13.0" />
+               </font>
+            </Label>
+            <TextField fx:id="nameField" layoutX="43.0" layoutY="191.0" prefHeight="36.0" prefWidth="286.0" promptText="NAME" />
          </children>
       </AnchorPane>
    </children>

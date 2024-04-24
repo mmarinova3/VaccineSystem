@@ -1,8 +1,6 @@
 package com.vaccine.Model.Entity;
 
 import jakarta.persistence.*;
-import org.hibernate.annotations.JdbcTypeCode;
-import org.hibernate.type.SqlTypes;
 
 import java.io.Serializable;
 
@@ -30,17 +28,17 @@ public class User implements Serializable{
     private String password;
 
     @Column(name = "email", length = 50)
-    @JdbcTypeCode(SqlTypes.VARCHAR)
     private String email;
 
 
     public User() {
     }
 
-    public User(Integer id, String username, String password) {
-        this.id = id;
+    public User( int id,String username, String password,String email) {
+        this.id=id;
         this.username = username;
         this.password = password;
+        this.email = email;
     }
 
     public Integer getId() {
@@ -74,6 +72,7 @@ public class User implements Serializable{
     public void setEmail(String email) {
         this.email = email;
     }
+
 
 
 }

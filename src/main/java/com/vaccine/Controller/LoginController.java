@@ -1,16 +1,21 @@
 package com.vaccine.Controller;
 
+import com.vaccine.Model.DAO.PersonDAO;
 import com.vaccine.Model.Entity.User;
 import com.vaccine.Service.UserService;
 import com.vaccine.Utils.Connection;
 import com.vaccine.Utils.SceneNavigator;
 import com.vaccine.Utils.Session;
 import com.vaccine.VaccineSystem.Main;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -31,6 +36,7 @@ public class LoginController {
 
     private final UserService userService;
 
+    private static final Logger log = LogManager.getLogger(LoginController.class);
     public LoginController() {
         this.userService = UserService.getInstance(Connection.getEntityManager(), Session.getInstance());
     }
@@ -73,5 +79,19 @@ public class LoginController {
     protected void onForgetPasswordButtonClick(){
         SceneNavigator.navigateTo("/com/vaccine/fxml/vac-change-password.fxml", loginAnchor);
 
+    }
+    @FXML
+    private void minimizeApp() {
+        Stage stage = (Stage) loginAnchor.getScene().getWindow();
+        if (stage != null) {
+            stage.setIconified(true);
+        }
+    }
+
+
+    @FXML
+    private void closeApp() {
+        log.info("Exit app...");
+        Platform.exit();
     }
 }

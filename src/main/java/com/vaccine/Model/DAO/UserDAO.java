@@ -99,6 +99,48 @@ public class UserDAO implements DAO<User> {
             return null;
         }
     }
+    public boolean checkEmailExists(String email) {
+        try {
+            Query query = entityManager.createQuery("SELECT COUNT(u) FROM User u WHERE u.email = :email");
+            query.setParameter("email", email);
+            Long count = (Long) query.getSingleResult();
+            return count > 0;
+        } catch (NoResultException e) {
+            return false;
+        } catch (Exception e) {
+            log.error("Error checking email existence: " + e.getMessage(), e);
+            return false;
+        }
+    }
+
+    public boolean checkUsernameExists(String username) {
+        try {
+            Query query = entityManager.createQuery("SELECT COUNT(u) FROM User u WHERE u.username = :username");
+            query.setParameter("username", username);
+            Long count = (Long) query.getSingleResult();
+            return count > 0;
+        } catch (NoResultException e) {
+            return false;
+        } catch (Exception e) {
+            log.error("Error checking username existence: " + e.getMessage(), e);
+            return false;
+        }
+    }
+
+    public Integer findIdByUsername(String username) {
+        try {
+            Query query = entityManager.createQuery("SELECT id FROM User WHERE username = :username");
+            query.setParameter("username", username);
+            return (Integer) query.getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        } catch (Exception e) {
+            log.error("Error finding id by username: " + e.getMessage(), e);
+            return null;
+        }
+    }
+
+
 
 }
 

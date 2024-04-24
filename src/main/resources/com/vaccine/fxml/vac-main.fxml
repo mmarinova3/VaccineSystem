@@ -5,18 +5,19 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Circle?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="603.0" prefWidth="785.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.vaccine.Controller.HomePageController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="610.0" prefWidth="878.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.vaccine.Controller.HomePageController">
    <left>
-      <AnchorPane prefHeight="564.0" prefWidth="88.0" style="-fx-background-color: #b4a6ab;" BorderPane.alignment="CENTER">
+      <AnchorPane style="-fx-background-color: #b4a6ab;" BorderPane.alignment="CENTER">
          <children>
             <Circle fill="#dddddd" layoutX="42.0" layoutY="44.0" radius="32.0" stroke="#946e83" strokeType="INSIDE" strokeWidth="3.0" />
             <Circle fill="#dddddd" layoutX="44.0" layoutY="120.0" radius="32.0" stroke="#946e83" strokeType="INSIDE" strokeWidth="3.0" />
             <Circle fill="#dddddd" layoutX="44.0" layoutY="194.0" radius="32.0" stroke="#946e83" strokeType="INSIDE" strokeWidth="3.0" />
             <Circle fill="#dddddd" layoutX="44.0" layoutY="268.0" radius="32.0" stroke="#946e83" strokeType="INSIDE" strokeWidth="3.0" />
-            <ImageView fitHeight="40.0" fitWidth="41.0" layoutX="22.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="personButton" accessibleRole="BUTTON" fitHeight="40.0" fitWidth="41.0" layoutX="22.0" layoutY="24.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../images/icons8-person-26.png" />
                </image>
@@ -36,17 +37,40 @@
                   <Image url="@../images/icons8-syringe-50.png" />
                </image>
             </ImageView>
+            <ImageView accessibleRole="BUTTON" fitHeight="38.0" fitWidth="42.0" layoutX="21.0" layoutY="517.0" onMouseClicked="#LogOut" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/logout-rounded-left-50.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
    </left>
    <top>
-      <AnchorPane prefHeight="39.0" prefWidth="785.0" style="-fx-background-color: #946e83;" BorderPane.alignment="CENTER" />
+      <AnchorPane style="-fx-background-color: #946e83;" BorderPane.alignment="CENTER">
+         <children>
+            <HBox layoutX="8.0" layoutY="8.0" prefHeight="18.0" prefWidth="55.0">
+               <children>
+                  <Circle accessibleRole="BUTTON" fill="#d01111" radius="8.0" stroke="WHITE" strokeType="INSIDE" />
+                  <ImageView fitHeight="17.0" fitWidth="3.0" pickOnBounds="true" preserveRatio="true" />
+                  <Circle accessibleRole="BUTTON" fill="#c4d01f" radius="8.0" stroke="WHITE" strokeType="INSIDE" />
+                  <ImageView fitHeight="17.0" fitWidth="3.0" pickOnBounds="true" preserveRatio="true" />
+                  <Circle fill="#5dd020" radius="8.0" stroke="WHITE" strokeType="INSIDE" />
+               </children>
+            </HBox>
+         </children></AnchorPane>
    </top>
    <center>
-      <ScrollPane prefHeight="559.0" prefWidth="665.0" BorderPane.alignment="CENTER">
+    <AnchorPane fx:id="mainAnchor" minHeight="0.0" minWidth="0.0" prefHeight="584.0" prefWidth="426.0" style="-fx-background-color: #ddf8e8;" BorderPane.alignment="CENTER" />
+   </center>
+   <right>
+      <ScrollPane prefHeight="661.0" prefWidth="346.0" BorderPane.alignment="CENTER">
         <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="561.0" prefWidth="697.0" style="-fx-background-color: #ddf8e8;" />
+          <AnchorPane>
+               <children>
+                  <VBox fx:id="personVBox" prefHeight="659.0" prefWidth="349.0" style="-fx-background-color: #b4a6ab;" />
+               </children>
+            </AnchorPane>
         </content>
       </ScrollPane>
-   </center>
+   </right>
 </BorderPane>

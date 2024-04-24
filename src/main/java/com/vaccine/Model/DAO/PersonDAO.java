@@ -1,26 +1,19 @@
 package com.vaccine.Model.DAO;
 
 import com.vaccine.Model.Entity.Person;
-import jakarta.persistence.EntityManager;
+import jakarta.persistence.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.PersistenceException;
-import jakarta.persistence.TypedQuery;
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
-@Repository
-@Transactional
 public class PersonDAO implements DAO<Person> {
 
+    private final static Logger log = LogManager.getLogger(Person.class);
     private final EntityManager entityManager;
-    private static final Logger log = LogManager.getLogger(PersonDAO.class);
 
-    @Autowired
     public PersonDAO(EntityManager entityManager) {
         this.entityManager = entityManager;
     }
@@ -48,11 +41,16 @@ public class PersonDAO implements DAO<Person> {
 
     @Override
     public void save(Person person) {
+        EntityTransaction transaction = entityManager.getTransaction();
         try {
+            transaction.begin();
             entityManager.persist(person);
+            transaction.commit();
         } catch (Exception e) {
-            log.error("Person save error: " + e.getMessage(), e);
-            throw new PersistenceException(e);
+            if (transaction.isActive()) {
+                transaction.rollback();
+                log.error("Person save error: " + e.getMessage(), e);
+            }
         }
     }
 
@@ -75,4 +73,18 @@ public class PersonDAO implements DAO<Person> {
             throw new PersistenceException(e);
         }
     }
+
+    public List<Person> getPersonsList(int userId) {
+        try {
+            Query query = entityManager.createQuery("SELECT p FROM Person p WHERE p.user.id = :userId");
+            query.setParameter("userId", userId);
+            return query.getResultList();
+        } catch (NoResultException e) {
+            return Collections.emptyList();
+        } catch (Exception e) {
+            log.error("Error finding persons by user ID: " + e.getMessage(), e);
+            return null;
+        }
+    }
+
 }

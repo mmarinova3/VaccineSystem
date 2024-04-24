@@ -5,8 +5,6 @@ import com.vaccine.Model.Entity.User;
 import com.vaccine.Utils.Session;
 
 import jakarta.persistence.EntityManager;
-import jakarta.persistence.NoResultException;
-import jakarta.persistence.Query;
 
 import java.util.List;
 import java.util.Optional;
@@ -56,5 +54,19 @@ public class UserService {
         }
         return user;
     }
+
+    public boolean checkEmailExists(String email){
+      return  userDao.checkEmailExists(email);
+    }
+
+    public boolean checkUsernameExists(String username){
+        return  userDao.checkUsernameExists(username);
+    }
+
+    public int getIdByUsername (String username){
+        return userDao.findIdByUsername(username);
+    }
+
+
 }
 
