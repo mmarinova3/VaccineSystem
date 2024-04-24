@@ -32,14 +32,12 @@ public class PersonPaneController {
     private Label vaccineLabel;
 
     private final UserService userService;
-    private final PersonService personService;
 
     private final Session session = Session.getInstance();
 
     private static final Logger log = LogManager.getLogger(LoginController.class);
     public PersonPaneController() {
         this.userService = UserService.getInstance(Connection.getEntityManager(), Session.getInstance());
-        this.personService = PersonService.getInstance(Connection.getEntityManager(),Session.getInstance());
     }
 
     @FXML

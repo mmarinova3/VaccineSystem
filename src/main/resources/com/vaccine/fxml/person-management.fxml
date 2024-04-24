@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane fx:id="editUserAnchor" minHeight="0.0" minWidth="0.0" prefHeight="584.0" prefWidth="426.0" style="-fx-background-color: #ddf8e8;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Text fontSmoothingType="LCD" layoutX="99.0" layoutY="182.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EDIT USER INFO" wrappingWidth="228.41015625">
+         <font>
+            <Font name="Calibri Bold" size="27.0" />
+         </font>
+      </Text>
+      <Label fx:id="infoLabel" layoutX="63.0" layoutY="551.0" prefHeight="17.0" prefWidth="287.0" textFill="#e80f0f">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>

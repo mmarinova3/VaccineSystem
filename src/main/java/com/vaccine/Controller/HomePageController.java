@@ -3,6 +3,7 @@ package com.vaccine.Controller;
 import com.vaccine.Service.PersonService;
 import com.vaccine.Service.UserService;
 import com.vaccine.Utils.Connection;
+import com.vaccine.Utils.SceneNavigator;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -26,7 +27,6 @@ public class HomePageController implements Initializable {
     private AnchorPane mainAnchor;
     @FXML
     private VBox personVBox;
-
 
     private final UserService userService;
     private final PersonService personService;
@@ -68,16 +68,17 @@ public class HomePageController implements Initializable {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-
-
-
         }
     }
-
 
     private List<Person> persons(){
         User currentUser = session.getUser();
         int currentUserId = currentUser.getId();
         return  personService.getPersonsList(currentUserId);
+    }
+
+    @FXML
+    private void openUserEditScene() {
+        SceneNavigator.navigateTo("/com/vaccine/fxml/edit-user.fxml", mainAnchor);
     }
 }
