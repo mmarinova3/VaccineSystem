@@ -19,12 +19,12 @@ public class PersonDAO implements DAO<Person> {
     }
 
     @Override
-    public Optional<Person> get(int id) {
+    public Person get(int id) {
         try {
-            return Optional.ofNullable(entityManager.find(Person.class, id));
+            return entityManager.find(Person.class, id);
         } catch (Exception e) {
             log.error("Person get error: " + e.getMessage(), e);
-            return Optional.empty();
+            return null;
         }
     }
 

@@ -16,7 +16,7 @@ public class EditUserController {
     @FXML
     private PasswordField confirmPasswordField;
     @FXML
-    private AnchorPane editUserAnchor;
+    private AnchorPane mainAnchor;
     @FXML
     private TextField emailField;
     @FXML
@@ -119,7 +119,11 @@ public class EditUserController {
 
     @FXML
     private void openPersonManagement() {
-        SceneNavigator.navigateTo("/com/vaccine/fxml/person-management.fxml", editUserAnchor);
+        SceneNavigator.navigateTo("/com/vaccine/fxml/person-management.fxml", mainAnchor);
     }
 
+    @FXML
+    private void openAddPerson() {
+        SceneNavigator.navigateTo("/com/vaccine/fxml/person-add.fxml", mainAnchor);
+    }
 }

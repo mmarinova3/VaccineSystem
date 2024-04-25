@@ -26,7 +26,7 @@ public class PersonService {
     }
 
 
-    public Optional<Person> getById(int id) {
+    public Person getById(int id) {
         return personDAO.get(id);
     }
 

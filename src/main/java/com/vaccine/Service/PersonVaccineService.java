@@ -23,7 +23,7 @@ public class PersonVaccineService {
         return INSTANCE;
     }
 
-    public Optional<PersonVaccine> getById(int Id) {
+    public PersonVaccine getById(int Id) {
         return personVaccineDAO.get(Id);
     }
 

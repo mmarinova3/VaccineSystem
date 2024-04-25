@@ -27,7 +27,7 @@ public class UserService {
     }
 
 
-    public Optional<User> getById(int Id) {
+    public User getById(int Id) {
         return userDao.get(Id);
     }
 

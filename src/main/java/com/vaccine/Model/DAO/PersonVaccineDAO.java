@@ -20,12 +20,12 @@ public class PersonVaccineDAO implements DAO<PersonVaccine> {
         this.entityManager = entityManager;
     }
     @Override
-    public Optional<PersonVaccine> get(int id) {
+    public PersonVaccine get(int id) {
         try {
-            return Optional.ofNullable(entityManager.find(PersonVaccine.class, id));
+            return entityManager.find(PersonVaccine.class, id);
         } catch (Exception e) {
             log.error("PersonVaccine get error: " + e.getMessage(), e);
-            return Optional.empty();
+            return null;
         }
     }
 

@@ -21,12 +21,12 @@ public class VaccineDAO implements DAO<Vaccine> {
         this.entityManager = entityManager;
     }
     @Override
-    public Optional<Vaccine> get(int id) {
+    public Vaccine get(int id) {
         try {
-            return Optional.ofNullable(entityManager.find(Vaccine.class, id));
+            return entityManager.find(Vaccine.class, id);
         } catch (Exception e) {
             log.error("Vaccine get error: " + e.getMessage(), e);
-            return Optional.empty();
+            return null;
         }
     }
 

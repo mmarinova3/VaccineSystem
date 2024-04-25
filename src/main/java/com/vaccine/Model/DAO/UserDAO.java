@@ -17,12 +17,12 @@ public class UserDAO implements DAO<User> {
     }
 
     @Override
-    public Optional<User> get(int id) {
+    public User get(int id) {
         try {
-            return Optional.ofNullable(entityManager.find(User.class, id));
+            return entityManager.find(User.class, id);
         } catch (Exception e) {
             log.error("User get error: " + e.getMessage(), e);
-            return Optional.empty();
+            return null;
         }
     }
 

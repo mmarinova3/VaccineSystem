@@ -28,7 +28,7 @@ public class Person {
     private String name;
 
     @Column(name = "dateOfBirth", nullable = false)
-    private Date dateOfBirth;
+    private java.sql.Date dateOfBirth;
 
     @Column(name = "relationWithUser")
     private String relationWithUser;
@@ -40,7 +40,7 @@ public class Person {
         this.id = id;
         this.user = user;
         this.name = name;
-        this.dateOfBirth = dateOfBirth;
+        this.dateOfBirth = (java.sql.Date) dateOfBirth;
         this.relationWithUser=null;
     }
 
@@ -70,11 +70,11 @@ public class Person {
     }
 
     public Date getDateOfBirth() {
-        return dateOfBirth;
+        return  dateOfBirth;
     }
 
     public void setDateOfBirth(Date dateOfBirth) {
-        this.dateOfBirth = dateOfBirth;
+        this.dateOfBirth = (java.sql.Date) dateOfBirth;
     }
 
     public String getRelationWithUser() {
