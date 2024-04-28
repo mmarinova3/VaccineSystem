@@ -7,6 +7,7 @@ import com.vaccine.Utils.SceneNavigator;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import com.vaccine.Utils.Session;
 import com.vaccine.Model.Entity.User;
@@ -27,6 +28,8 @@ public class HomePageController implements Initializable {
     private AnchorPane mainAnchor;
     @FXML
     private VBox personVBox;
+    @FXML
+    private ScrollPane rightPane;
 
     private final UserService userService;
     private final PersonService personService;
@@ -56,7 +59,6 @@ public class HomePageController implements Initializable {
         List<Person> persons = persons();
 
         for (Person person : persons) {
-            // int personId = person.getId();
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(getClass().getResource("/com/vaccine/fxml/person-pane.fxml"));
 
@@ -80,5 +82,11 @@ public class HomePageController implements Initializable {
     @FXML
     private void openUserEditScene() {
         SceneNavigator.navigateTo("/com/vaccine/fxml/edit-user.fxml", mainAnchor);
+    }
+
+    @FXML
+    private void openVaccineManagement() {
+        rightPane.setVisible(false);
+        SceneNavigator.navigateTo("/com/vaccine/fxml/vaccine-management.fxml", mainAnchor);
     }
 }

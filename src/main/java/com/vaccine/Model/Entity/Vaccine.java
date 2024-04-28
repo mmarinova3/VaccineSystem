@@ -7,12 +7,13 @@ import org.hibernate.type.SqlTypes;
 @Entity
 @Table(name = "Vaccine", indexes = {
         @Index(name = "vaccineId", columnList = "vaccineId", unique = true),
-        @Index(name = "vaccineName", columnList = "vaccineName"),
-        @Index(name = "info", columnList = "info"),
-        @Index(name = "vaccineAge", columnList = "vaccineAge"),
-        @Index(name = "period", columnList = "period"),
-        @Index(name = "doseNumber", columnList = "doseNumber"),
-        @Index(name = "isMade", columnList = "isMade")
+        @Index(name = "Name", columnList = "Name"),
+        @Index(name = "AgeOfUse", columnList = "AgeOfUse"),
+        @Index(name = "Info", columnList = "Info"),
+        @Index(name = "ApplicationMethod", columnList = "ApplicationMethod"),
+        @Index(name = "isMandatory", columnList = "isMandatory"),
+        @Index(name = "isOneTime", columnList = "isOneTime"),
+        @Index(name = "effectivenessPeriod", columnList = "effectivenessPeriod")
 })
 
 public class Vaccine {
@@ -21,69 +22,34 @@ public class Vaccine {
     @Column(name = "vaccineId", nullable = false)
     private Integer id;
 
-    @Column(name = "vaccineName", length = 50)
+    @Column(name = "Name", length = 50)
     @JdbcTypeCode(SqlTypes.VARCHAR)
     private String vaccineName;
 
+    @Column(name = "AgeOfUse")
+    @JdbcTypeCode(SqlTypes.INTEGER)
+    private int ageOfUse;
     @Lob
-    @Column(name = "info")
+    @Column(name = "Info")
     @JdbcTypeCode(SqlTypes.LONG32VARCHAR)
     private String info;
 
-    @Column(name = "vaccineAge")
-    @JdbcTypeCode(SqlTypes.INTEGER)
-    private Integer vaccineAge;
+    @Column(name = "ApplicationMethod")
+    @JdbcTypeCode(SqlTypes.VARCHAR)
+    private String applicationMethod;
 
-    @Column(name = "period")
-    @JdbcTypeCode(SqlTypes.INTEGER)
-    private Integer period;
-
-    @Column(name = "doseNumber")
-    @JdbcTypeCode(SqlTypes.INTEGER)
-    private Integer doseNumber;
-
-    @Column(name = "isMade")
+    @Column(name = "isMandatory")
     @JdbcTypeCode(SqlTypes.BOOLEAN)
-    private boolean isMade;
+    private boolean isMandatory;
+    @Column(name = "isOneTime")
+    @JdbcTypeCode(SqlTypes.BOOLEAN)
+    private boolean isOneTime;
 
-    public Integer getDoseNumber() {
-        return doseNumber;
-    }
+    @Column(name = "effectivenessPeriod")
+    @JdbcTypeCode(SqlTypes.INTEGER)
+    private int effectivenessPeriod;
 
-    public void setDoseNumber(Integer doseNumber) {
-        this.doseNumber = doseNumber;
-    }
-
-    public Integer getPeriod() {
-        return period;
-    }
-
-    public void setPeriod(Integer period) {
-        this.period = period;
-    }
-
-    public Integer getVaccineAge() {
-        return vaccineAge;
-    }
-
-    public void setVaccineAge(Integer vaccineAge) {
-        this.vaccineAge = vaccineAge;
-    }
-
-    public String getInfo() {
-        return info;
-    }
-
-    public void setInfo(String info) {
-        this.info = info;
-    }
-
-    public String getVaccineName() {
-        return vaccineName;
-    }
-
-    public void setVaccineName(String vaccineName) {
-        this.vaccineName = vaccineName;
+    public Vaccine() {
     }
 
     public Integer getId() {
@@ -94,4 +60,59 @@ public class Vaccine {
         this.id = id;
     }
 
+    public String getVaccineName() {
+        return vaccineName;
+    }
+
+    public void setVaccineName(String vaccineName) {
+        this.vaccineName = vaccineName;
+    }
+
+    public int getAgeOfUse() {
+        return ageOfUse;
+    }
+
+    public void setAgeOfUse(int ageOfUse) {
+        this.ageOfUse = ageOfUse;
+    }
+
+    public String getInfo() {
+        return info;
+    }
+
+    public void setInfo(String info) {
+        this.info = info;
+    }
+
+    public String getApplicationMethod() {
+        return applicationMethod;
+    }
+
+    public void setApplicationMethod(String applicationMethod) {
+        this.applicationMethod = applicationMethod;
+    }
+
+    public boolean isMandatory() {
+        return isMandatory;
+    }
+
+    public void setMandatory(boolean mandatory) {
+        isMandatory = mandatory;
+    }
+
+    public boolean isOneTime() {
+        return isOneTime;
+    }
+
+    public void setOneTime(boolean oneTime) {
+        isOneTime = oneTime;
+    }
+
+    public int getEffectivenessPeriod() {
+        return effectivenessPeriod;
+    }
+
+    public void setEffectivenessPeriod(int effectivenessPeriod) {
+        this.effectivenessPeriod = effectivenessPeriod;
+    }
 }

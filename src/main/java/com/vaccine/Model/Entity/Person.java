@@ -1,7 +1,9 @@
 package com.vaccine.Model.Entity;
 
+import com.vaccine.Utils.RelationshipEnum;
 import jakarta.persistence.*;
 
+import java.io.Serializable;
 import java.util.Date;
 
 @Table(name = "Person", indexes = {
@@ -13,12 +15,11 @@ import java.util.Date;
 })
 
 @Entity
-public class Person {
+public class Person  implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     @Column(name = "personId", nullable = false)
     private int id;
-
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "userId", nullable = false)
@@ -36,12 +37,11 @@ public class Person {
     public Person() {
     }
 
-    public Person(int id,User user, String name, Date dateOfBirth) {
-        this.id = id;
+    public Person(User user, String name, Date dateOfBirth) {
         this.user = user;
         this.name = name;
         this.dateOfBirth = (java.sql.Date) dateOfBirth;
-        this.relationWithUser=null;
+        this.relationWithUser= RelationshipEnum.ME.toString();
     }
 
 

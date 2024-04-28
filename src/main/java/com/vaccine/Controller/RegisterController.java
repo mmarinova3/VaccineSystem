@@ -42,9 +42,6 @@ public class RegisterController {
     @FXML
     protected void onGoRegisterButtonClick() {
 
-        Person newPerson = new Person(1332,new User(1,"a","b","c"), "enteredName", Date.valueOf("2002-12-12"));
-        personService.save(newPerson);
-/*
         String enteredUsername = usernameField.getText();
         String enteredPassword = passwordField.getText();
         String enteredEmail = emailField.getText();
@@ -63,24 +60,21 @@ public class RegisterController {
             return;
         }
 
-        User newUser = new User(enteredUsername, enteredPassword, enteredEmail);
+        User newUser = new User();
+        newUser.setUsername(enteredUsername);
+        newUser.setEmail(enteredEmail);
+        newUser.setPassword(enteredPassword);
         userService.save(newUser);
 
-        Person newPerson = new Person(1,newUser, enteredName, enteredBirthday);
-
-        System.out.print("\nName:"+enteredName+"\nDate:"+enteredBirthday+"\nStatus:"+ newPerson.getRelationWithUser());
+        Person newPerson = new Person(newUser,enteredName,enteredBirthday);
         personService.save(newPerson);
-        System.out.print("\n"+newPerson.getId());
 
- */
+        infoLabel.setText("Registration is successful.");
     }
-
 
     @FXML
     protected void onGoBackButtonClick() throws IOException {
         Main app= new Main();
         app.changeScene("/com/vaccine/fxml/vac-login-view.fxml",747, 438,false);
-
-
     }
 }

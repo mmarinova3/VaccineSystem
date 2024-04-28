@@ -11,7 +11,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import javafx.scene.Parent;
 import javafx.scene.layout.AnchorPane;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -25,69 +24,28 @@ import java.util.Map;
 public class EditPersonController {
     @FXML
     private DatePicker birthday;
-
     @FXML
     private AnchorPane editPersonAnchor;
-
     @FXML
     private Label infoLabel;
-
     @FXML
     private ComboBox<String> personComboBox;
-
     @FXML
     private ComboBox<RelationshipEnum> relationComboBox;
-
     @FXML
     private TextField nameField;
     private boolean nameEnabled = false;
     private boolean birthdayEnabled = false;
     private boolean relationEnabled = false;
-
-
     private final PersonService personService;
-
     private final Session session = Session.getInstance();
-
     private static final Logger log = LogManager.getLogger(LoginController.class);
     public EditPersonController() {
         this.personService = PersonService.getInstance(Connection.getEntityManager(), Session.getInstance());
     }
 
-
-    private boolean isPersonAddFXML = true;
-
-    private void determineFXMLFile() {
-        if (editPersonAnchor.getScene() != null) {
-            String fxmlFile = editPersonAnchor.getScene().getRoot().getId();
-            if (fxmlFile != null) {
-                System.out.println("FXML file: " + fxmlFile);
-            } else {
-                System.out.println("FXML file not found");
-            }
-        } else {
-            System.out.println("AnchorPane is not attached to a scene");
-        }
-    }
-
-
     @FXML
     public void initialize() {
-        determineFXMLFile();
-
-        if (isPersonAddFXML) {
-            initializeForPersonAddFXML();
-        } else {
-            initializeForEditUserFXML();
-        }
-    }
-
-
-    public void initializeForPersonAddFXML() {
-        populateRelationComboBox();
-    }
-
-    public void initializeForEditUserFXML() {
         populatePersonComboBox();
         populateRelationComboBox();
         disableFields();
@@ -97,9 +55,7 @@ public class EditPersonController {
                 fillFields();
             }
         });
-
     }
-
 
     private void populatePersonComboBox() {
         User currentUser = session.getUser();
@@ -159,40 +115,6 @@ public class EditPersonController {
     }
 
     @FXML
-    private void addButtonClicked () {
-        Person person = new Person();
-
-        String newName = nameField.getText();
-        java.sql.Date newDateOfBirth = Date.valueOf(birthday.getValue());
-        String relation = String.valueOf(relationComboBox.getValue());
-
-        if (newName == null || relation == null){
-            infoLabel.setText("Please, fill all the fields");
-            return;
-        }
-
-        if (relation.equals("ME") || relation.equals("HUSBAND")) {
-            List<Person> existingPersons = personService.getPersonsList(session.getUser().getId());
-            for (Person existingPerson : existingPersons) {
-                if (existingPerson.getRelationWithUser() != null && existingPerson.getRelationWithUser().equals(relation)) {
-                    infoLabel.setText("There is already a person with the relation: " + relation);
-                    return;
-                }
-            }
-        }
-        User currentUser = session.getUser();
-
-        person.setName(newName);
-        person.setDateOfBirth(newDateOfBirth);
-        person.setRelationWithUser(relation);
-        person.setUser(currentUser);
-
-        personService.save(person);
-        disableFields();
-        infoLabel.setText("Person added successfully");
-    }
-
-    @FXML
     private void saveChangesClicked() {
         if (getSelectedPersonId() == 0){
             infoLabel.setText("Please, select person");
@@ -213,7 +135,7 @@ public class EditPersonController {
 
         if (relationEnabled) {
             String relation = String.valueOf(relationComboBox.getValue());
-            if (relation.equals("ME") || relation.equals("HUSBAND")) {
+            if (relation.equals("ME") || relation.equals("PARTNER")) {
                 List<Person> existingPersons = personService.getPersonsList(session.getUser().getId());
                 for (Person existingPerson : existingPersons) {
                     if (existingPerson.getRelationWithUser() != null && existingPerson.getRelationWithUser().equals(relation)) {
@@ -228,7 +150,6 @@ public class EditPersonController {
         personService.save(person);
         disableFields();
         infoLabel.setText("Changes saved successfully");
-
     }
 
     @FXML
@@ -244,8 +165,9 @@ public class EditPersonController {
         alert.setContentText("Are you sure you want to delete this person?");
 
         alert.showAndWait().ifPresent(response -> {
-            if (response == ButtonType.YES) {
+            if (response == ButtonType.OK) {
                 Person person = personService.getById(getSelectedPersonId());
+                log.info(person.getId());
                 personService.delete(person);
                 disableFields();
                 infoLabel.setText("Person deleted successfully");
@@ -254,8 +176,6 @@ public class EditPersonController {
             }
         });
     }
-
-
 
     private void fillFields(){
         Person person = personService.getById(getSelectedPersonId());

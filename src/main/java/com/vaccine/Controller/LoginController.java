@@ -1,6 +1,5 @@
 package com.vaccine.Controller;
 
-import com.vaccine.Model.DAO.PersonDAO;
 import com.vaccine.Model.Entity.User;
 import com.vaccine.Service.UserService;
 import com.vaccine.Utils.Connection;
@@ -20,10 +19,8 @@ import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 
-
 @Component
 public class LoginController {
-
 
     @FXML
     private Label infoLabel;
@@ -45,7 +42,6 @@ public class LoginController {
     public void initialize() {
         Session.getInstance();
     }
-
 
     @FXML
     protected void onLoginButtonClick() throws IOException {
@@ -72,13 +68,11 @@ public class LoginController {
     @FXML
     protected void onRegisterButtonClick(){
         SceneNavigator.navigateTo("/com/vaccine/fxml/vac-register.view.fxml", loginAnchor);
-
     }
 
     @FXML
     protected void onForgetPasswordButtonClick(){
         SceneNavigator.navigateTo("/com/vaccine/fxml/vac-change-password.fxml", loginAnchor);
-
     }
     @FXML
     private void minimizeApp() {
@@ -87,7 +81,6 @@ public class LoginController {
             stage.setIconified(true);
         }
     }
-
 
     @FXML
     private void closeApp() {

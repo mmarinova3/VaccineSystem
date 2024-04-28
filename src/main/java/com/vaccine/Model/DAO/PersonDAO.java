@@ -1,13 +1,13 @@
 package com.vaccine.Model.DAO;
 
 import com.vaccine.Model.Entity.Person;
+import com.vaccine.Model.Entity.User;
 import jakarta.persistence.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 public class PersonDAO implements DAO<Person> {
 
@@ -44,6 +44,10 @@ public class PersonDAO implements DAO<Person> {
         EntityTransaction transaction = entityManager.getTransaction();
         try {
             transaction.begin();
+
+            User mergedUser = entityManager.merge(person.getUser());
+            person.setUser(mergedUser);
+
             entityManager.persist(person);
             transaction.commit();
         } catch (Exception e) {
@@ -53,6 +57,7 @@ public class PersonDAO implements DAO<Person> {
             }
         }
     }
+
 
     @Override
     public void update(Person person, String[] params) {
@@ -66,11 +71,16 @@ public class PersonDAO implements DAO<Person> {
 
     @Override
     public void delete(Person person) {
+        EntityTransaction transaction = entityManager.getTransaction();
         try {
+            transaction.begin();
             entityManager.remove(person);
+            transaction.commit();
         } catch (Exception e) {
-            log.error("Person delete error: " + e.getMessage(), e);
-            throw new PersistenceException(e);
+            if (transaction.isActive()) {
+                transaction.rollback();
+                log.error("Person delete error: " + e.getMessage(), e);
+            }
         }
     }
 

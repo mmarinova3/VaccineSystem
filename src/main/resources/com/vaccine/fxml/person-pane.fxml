@@ -18,7 +18,7 @@
       </Label>
       <Label fx:id="nameLabel" layoutX="70.0" layoutY="28.0" prefHeight="17.0" prefWidth="188.0" text="Miroslava Marinova (child)" textFill="#57434f">
          <font>
-            <Font name="Berlin Sans FB" size="13.0" />
+            <Font name="Leelawadee UI Bold" size="13.0" />
          </font>
       </Label>
       <Label fx:id="vaccineLabel" layoutX="70.0" layoutY="48.0" prefHeight="17.0" prefWidth="188.0" text="Vaccine name" textFill="#57434f">

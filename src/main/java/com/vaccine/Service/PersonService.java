@@ -39,7 +39,7 @@ public class PersonService {
     }
 
     public void update(Person person)  {
-        personDAO.update(person, null); // You can pass parameters if needed
+        personDAO.update(person, null);
     }
 
     public void delete(Person person)  {
