@@ -81,6 +81,7 @@ public class HomePageController implements Initializable {
 
     @FXML
     private void openUserEditScene() {
+        rightPane.setVisible(true);
         SceneNavigator.navigateTo("/com/vaccine/fxml/edit-user.fxml", mainAnchor);
     }
 
@@ -88,5 +89,22 @@ public class HomePageController implements Initializable {
     private void openVaccineManagement() {
         rightPane.setVisible(false);
         SceneNavigator.navigateTo("/com/vaccine/fxml/vaccine-management.fxml", mainAnchor);
+    }
+
+    @FXML
+    private void openVaccineInfo() {
+        rightPane.setVisible(false);
+        SceneNavigator.navigateTo("/com/vaccine/fxml/vac-info-user.fxml", mainAnchor);
+    }
+
+    @FXML
+    private void openVaccinePersonView() {
+        rightPane.setVisible(true);
+        SceneNavigator.navigateTo("/com/vaccine/fxml/vaccine-person.fxml", mainAnchor);
+    }
+    @FXML
+    private void openHomeView() throws IOException {
+         Main app = new Main();
+        app.changeScene("/com/vaccine/fxml/vac-main.fxml",1000,600,true);
     }
 }
