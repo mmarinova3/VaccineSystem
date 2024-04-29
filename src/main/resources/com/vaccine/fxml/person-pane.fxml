@@ -1,36 +1,47 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.effect.Blend?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
-<Pane fx:id="personPane" prefHeight="91.0" prefWidth="346.0" style="-fx-background-color: #cdd5d1;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.vaccine.Controller.PersonPaneController">
+<Pane fx:id="personPane" prefHeight="91.0" prefWidth="286.0" style="-fx-background-color: #B2A6CE;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.vaccine.Controller.PersonPaneController">
    <children>
-      <HBox prefHeight="21.0" prefWidth="346.0" style="-fx-background-color: #b4a6ab;" />
-      <Circle fill="#f5f5f5" layoutX="35.0" layoutY="56.0" radius="28.0" stroke="#b4a6ab" strokeType="INSIDE" strokeWidth="3.0" />
-      <Label fx:id="letterLabel" layoutX="15.0" layoutY="43.0" prefWidth="40.0" text="MM" textFill="#946e83">
-         <font>
-            <Font name="Berlin Sans FB Demi Bold" size="24.0" />
-         </font>
-      </Label>
-      <Label fx:id="nameLabel" layoutX="70.0" layoutY="28.0" prefHeight="17.0" prefWidth="188.0" text="Miroslava Marinova (child)" textFill="#57434f">
-         <font>
-            <Font name="Leelawadee UI Bold" size="13.0" />
-         </font>
-      </Label>
-      <Label fx:id="vaccineLabel" layoutX="70.0" layoutY="48.0" prefHeight="17.0" prefWidth="188.0" text="Vaccine name" textFill="#57434f">
-         <font>
-            <Font name="Berlin Sans FB" size="13.0" />
-         </font>
-      </Label>
-      <Label fx:id="periodLabel" layoutX="173.0" layoutY="62.0" prefHeight="17.0" prefWidth="116.0" text="10.2024 - 12.2024" textFill="#0a090a">
-         <font>
-            <Font name="Berlin Sans FB" size="13.0" />
-         </font>
-      </Label>
-      <CheckBox fx:id="isVaccineCheckBox" graphicTextGap="0.0" layoutX="242.0" layoutY="37.0" mnemonicParsing="false" snapToPixel="false" />
+      <AnchorPane layoutX="5.0" layoutY="7.0" prefHeight="78.0" prefWidth="251.0" style="-fx-background-color: #6E5C9A;" styleClass="oval-pane" stylesheets="@../css/personPane.css">
+         <children>
+            <Circle fill="#e0d4fc" layoutX="42.0" layoutY="39.0" radius="28.0" stroke="#cccccc" strokeType="INSIDE" strokeWidth="3.0" />
+            <Label fx:id="letterLabel" layoutX="25.0" layoutY="23.0" prefHeight="27.0" prefWidth="35.0" text="MM" textFill="#44326e">
+               <font>
+                  <Font name="Leelawadee UI Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label fx:id="nameLabel" layoutX="78.0" layoutY="18.0" prefHeight="17.0" prefWidth="188.0" text="Miroslava Marinova (child)" textFill="#0a090a">
+               <font>
+                  <Font name="Leelawadee UI Bold" size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="vaccineLabel" layoutX="89.0" layoutY="36.0" prefHeight="17.0" prefWidth="188.0" text="Vaccine name" textFill="#0a090a">
+               <font>
+                  <Font name="Leelawadee UI" size="13.0" />
+               </font>
+            </Label>
+            <Label fx:id="periodLabel" layoutX="108.0" layoutY="54.0" prefHeight="17.0" prefWidth="116.0" text="10.2024 - 12.2024" textFill="#0a090a">
+               <font>
+                  <Font name="Berlin Sans FB" size="13.0" />
+               </font>
+            </Label>
+            <CheckBox fx:id="isVaccineCheckBox" graphicTextGap="0.0" layoutX="224.0" layoutY="45.0" mnemonicParsing="false" onAction="#handleCheckBox" snapToPixel="false" />
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <effect>
+            <Blend />
+         </effect>
+      </AnchorPane>
    </children>
 </Pane>

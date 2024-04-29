@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="addUserRoot" fx:id="editPersonAnchor" minHeight="0.0" minWidth="0.0" prefHeight="584.0" prefWidth="426.0" style="-fx-background-color: #ddf8e8;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.vaccine.Controller.AddPersonController">
+<AnchorPane id="addUserRoot" fx:id="editPersonAnchor" minHeight="0.0" minWidth="0.0" prefHeight="584.0" prefWidth="426.0" style="-fx-background-color: E0D4FC;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.vaccine.Controller.AddPersonController">
    <children>
       <Text fontSmoothingType="LCD" layoutX="109.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" text="ADD NEW PERSON" wrappingWidth="228.41015625">
          <font>
@@ -22,12 +22,12 @@
          </font>
       </Label>
       <TextField fx:id="nameField" layoutX="80.0" layoutY="187.0" prefHeight="36.0" prefWidth="286.0" promptText="NAME" />
-      <Button layoutX="87.0" layoutY="348.0" mnemonicParsing="false" onAction="#addButtonClicked" prefHeight="36.0" prefWidth="273.0" style="-fx-background-color: #ddd6d8;" text="ADD" textFill="#615055" textOverrun="CENTER_WORD_ELLIPSIS">
+      <Button layoutX="87.0" layoutY="348.0" mnemonicParsing="false" onAction="#addButtonClicked" prefHeight="36.0" prefWidth="273.0" style="-fx-background-color: #6E5C9A;" text="ADD" textFill="WHITE" textOverrun="CENTER_WORD_ELLIPSIS">
          <font>
-            <Font name="System Bold" size="14.0" />
+            <Font name="Leelawadee UI Bold" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="personManagementButton" layoutX="59.0" layoutY="29.0" mnemonicParsing="false" onAction="#openUserManagement" prefHeight="68.0" prefWidth="330.0" style="-fx-background-color: dddddd;" text="GO TO USER MANAGMENT" textFill="#615055" textOverrun="CENTER_WORD_ELLIPSIS">
+      <Button fx:id="personManagementButton" layoutX="59.0" layoutY="29.0" mnemonicParsing="false" onAction="#openUserManagement" prefHeight="68.0" prefWidth="330.0" style="-fx-background-color: B2A6CE;" text="GO TO USER MANAGMENT" textFill="WHITE" textOverrun="CENTER_WORD_ELLIPSIS">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>

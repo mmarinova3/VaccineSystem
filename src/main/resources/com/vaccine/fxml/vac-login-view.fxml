@@ -14,27 +14,27 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="438.0" prefWidth="747.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.vaccine.Controller.LoginController">
+<AnchorPane prefHeight="434.0" prefWidth="723.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.vaccine.Controller.LoginController">
    <children>
       <BorderPane prefHeight="438.0" prefWidth="747.0">
          <left>
-            <AnchorPane prefHeight="437.0" prefWidth="347.0" style="-fx-background-color: #946e83;" BorderPane.alignment="CENTER">
+            <AnchorPane prefHeight="438.0" prefWidth="371.0" style="-fx-background-color: #765CA6;" BorderPane.alignment="CENTER">
                <children>
                   <HBox layoutX="14.0" layoutY="14.0" prefHeight="18.0" prefWidth="55.0">
                      <children>
-                        <Circle accessibleRole="BUTTON" fill="#d01111" onMouseClicked="#closeApp" radius="8.0" stroke="WHITE" strokeType="INSIDE" />
+                        <Circle accessibleRole="BUTTON" fill="#d01111" onMouseClicked="#closeApp" radius="8.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="2.0" />
                         <ImageView fitHeight="17.0" fitWidth="3.0" pickOnBounds="true" preserveRatio="true" />
-                        <Circle fill="#5dd020" onMouseClicked="#minimizeApp" radius="8.0" stroke="WHITE" strokeType="INSIDE" />
+                        <Circle fill="#5dd020" onMouseClicked="#minimizeApp" radius="8.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="2.0" />
                      </children>
                   </HBox>
-                  <Text fill="WHITE" fontSmoothingType="LCD" layoutX="65.0" layoutY="302.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VaxTrace" wrappingWidth="224.13671875">
+                  <Text fill="WHITE" fontSmoothingType="LCD" layoutX="70.0" layoutY="300.0" strokeType="OUTSIDE" strokeWidth="0.0" text="VaxTrace" wrappingWidth="224.13671875">
                      <font>
-                        <Font name="Comic Sans MS" size="47.0" />
+                        <Font name="Leelawadee UI Bold" size="47.0" />
                      </font>
                   </Text>
-                  <Circle fill="#cdd5d1" layoutX="178.0" layoutY="174.0" radius="76.0" stroke="#b4a6ab" strokeType="INSIDE" />
+                  <Circle fill="#bdcdf1" layoutX="178.0" layoutY="174.0" radius="76.0" stroke="#b4a6ab" strokeType="INSIDE" />
                   <Circle fill="#ffa71f" layoutX="223.0" layoutY="102.0" radius="5.0" stroke="#00000007" strokeType="INSIDE" />
-                  <Circle fill="#ff961f" layoutX="115.0" layoutY="216.0" radius="7.0" stroke="TRANSPARENT" strokeType="INSIDE" />
+                  <Circle fill="#f58b1b" layoutX="115.0" layoutY="216.0" radius="7.0" stroke="#3c343400" strokeType="INSIDE" />
                   <Circle fill="#ffb648" layoutX="211.0" layoutY="98.0" radius="2.0" stroke="#00000007" strokeType="INSIDE" />
                   <Circle fill="#e8d3b4" layoutX="235.0" layoutY="116.0" radius="3.0" stroke="#00000007" strokeType="INSIDE" />
                   <Circle fill="#ffc163" layoutX="122.0" layoutY="237.0" radius="5.0" stroke="TRANSPARENT" strokeType="INSIDE" />
@@ -45,40 +45,43 @@
                         <Image url="@../images/360_F_281648504_kpuzmc5PUuLiOcIs5ghnUp8nFaHIZV6A.png" />
                      </image>
                   </ImageView>
-                  <Text fill="WHITE" fontSmoothingType="LCD" layoutX="34.0" layoutY="333.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Stay Informed, Stay Protected">
+                  <Text fill="WHITE" fontSmoothingType="LCD" layoutX="56.0" layoutY="331.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Stay Informed, Stay Protected">
                      <font>
-                        <Font name="Consolas" size="18.0" />
+                        <Font name="Leelawadee UI" size="18.0" />
                      </font>
                   </Text>
                </children>
             </AnchorPane>
          </left>
          <center>
-            <AnchorPane fx:id="loginAnchor" prefHeight="438.0" prefWidth="400.0" BorderPane.alignment="CENTER">
+            <AnchorPane fx:id="loginAnchor" prefHeight="438.0" prefWidth="430.0" style="-fx-background-color: #E0D4FC;" BorderPane.alignment="CENTER">
                <children>
-                  <Text fontSmoothingType="LCD" layoutX="40.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign In" wrappingWidth="96.41015625">
+                  <Text fill="#43326e" fontSmoothingType="LCD" layoutX="40.0" layoutY="79.0" stroke="#8a7c7c" strokeType="OUTSIDE" strokeWidth="0.0" text="Sign In" wrappingWidth="96.41015625">
                      <font>
-                        <Font name="Calibri Bold" size="27.0" />
+                        <Font name="Leelawadee UI Bold" size="27.0" />
                      </font>
                   </Text>
                   <PasswordField fx:id="passwordField" layoutX="42.0" layoutY="196.0" prefHeight="47.0" prefWidth="287.0" promptText="PASSWORD" />
                   <TextField fx:id="usernameField" layoutX="42.0" layoutY="132.0" prefHeight="45.0" prefWidth="286.0" promptText="USERNAME" />
-                  <Hyperlink accessibleRole="BUTTON" layoutX="42.0" layoutY="273.0" onAction="#onForgetPasswordButtonClick" prefHeight="23.0" prefWidth="132.0" text="Forget password?" textFill="#615055">
+                  <Hyperlink accessibleRole="BUTTON" layoutX="42.0" layoutY="273.0" onAction="#onForgetPasswordButtonClick" prefHeight="23.0" prefWidth="132.0" text="Forget password?" textFill="#672fb8">
                      <font>
-                        <Font name="Calibri" size="14.0" />
+                        <Font name="Leelawadee UI" size="14.0" />
                      </font>
                   </Hyperlink>
-                  <Button layoutX="174.0" layoutY="266.0" mnemonicParsing="false" onAction="#onLoginButtonClick" prefHeight="36.0" prefWidth="156.0" style="-fx-background-color: #615055;" text="Sign In" textFill="WHITE">
+                  <Button layoutX="174.0" layoutY="266.0" mnemonicParsing="false" onAction="#onLoginButtonClick" prefHeight="36.0" prefWidth="156.0" style="-fx-background-color: #43326E;" text="Sign In" textFill="WHITE">
                      <font>
-                        <Font name="Calibri Bold" size="16.0" />
+                        <Font name="Leelawadee UI Bold" size="14.0" />
                      </font>
                   </Button>
-                  <Button layoutX="47.0" layoutY="319.0" mnemonicParsing="false" onAction="#onRegisterButtonClick" prefHeight="49.0" prefWidth="284.0" style="-fx-background-color: #ddd6d8;" text="Don't have an account? Sign Up" textFill="WHITE" textOverrun="CENTER_WORD_ELLIPSIS">
+                  <Button layoutX="45.0" layoutY="319.0" mnemonicParsing="false" onAction="#onRegisterButtonClick" prefHeight="49.0" prefWidth="286.0" style="-fx-background-color: #B2A6CE;" text="Don't have an account? Sign Up" textFill="WHITE" textOverrun="CENTER_WORD_ELLIPSIS">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Button>
-                  <Label fx:id="infoLabel" layoutX="80.0" layoutY="101.0" prefHeight="17.0" prefWidth="202.0" textFill="#bc0d0d" />
+                  <Label fx:id="infoLabel" layoutX="80.0" layoutY="101.0" prefHeight="17.0" prefWidth="202.0" textFill="RED">
+                     <font>
+                        <Font name="Leelawadee" size="12.0" />
+                     </font></Label>
                </children>
             </AnchorPane>
          </center>

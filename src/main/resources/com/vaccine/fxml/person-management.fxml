@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane id="editUserRoot" fx:id="editPersonAnchor" minHeight="0.0" minWidth="0.0" prefHeight="584.0" prefWidth="426.0" style="-fx-background-color: #ddf8e8;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.vaccine.Controller.EditPersonController">
+<AnchorPane id="editUserRoot" fx:id="editPersonAnchor" minHeight="0.0" minWidth="0.0" prefHeight="584.0" prefWidth="426.0" style="-fx-background-color: E0D4FC;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.vaccine.Controller.EditPersonController">
    <children>
       <Text fontSmoothingType="LCD" layoutX="109.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EDIT PERSON INFO" wrappingWidth="228.41015625">
          <font>
@@ -22,19 +22,19 @@
          </font>
       </Label>
       <TextField fx:id="nameField" layoutX="82.0" layoutY="260.0" prefHeight="36.0" prefWidth="286.0" promptText="NAME" />
-      <Button fx:id="saveChangesButton" layoutX="87.0" layoutY="429.0" mnemonicParsing="false" onAction="#saveChangesClicked" prefHeight="36.0" prefWidth="273.0" style="-fx-background-color: #ddd6d8;" text="SAVE CHANGES" textFill="#615055" textOverrun="CENTER_WORD_ELLIPSIS">
+      <Button fx:id="saveChangesButton" layoutX="87.0" layoutY="429.0" mnemonicParsing="false" onAction="#saveChangesClicked" prefHeight="36.0" prefWidth="273.0" style="-fx-background-color: #6E5C9A;" text="SAVE CHANGES" textFill="WHITE" textOverrun="CENTER_WORD_ELLIPSIS">
          <font>
-            <Font name="System Bold" size="14.0" />
+            <Font name="Leelawadee UI Bold" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="personManagementButton" layoutX="59.0" layoutY="29.0" mnemonicParsing="false" onAction="#openUserManagement" prefHeight="68.0" prefWidth="330.0" style="-fx-background-color: dddddd;" text="GO TO USER MANAGMENT" textFill="#615055" textOverrun="CENTER_WORD_ELLIPSIS">
+      <Button fx:id="personManagementButton" layoutX="59.0" layoutY="29.0" mnemonicParsing="false" onAction="#openUserManagement" prefHeight="68.0" prefWidth="330.0" style="-fx-background-color: B2A6CE;" text="GO TO USER MANAGMENT" textFill="WHITE" textOverrun="CENTER_WORD_ELLIPSIS">
          <font>
-            <Font name="System Bold" size="14.0" />
+            <Font name="Leelawadee UI Bold" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="enableNameField" layoutX="371.0" layoutY="266.0" mnemonicParsing="false" onAction="#enableNameFieldClicked" style="-fx-background-color: #ddf8e8;" text="edit" textFill="#615055" textOverrun="CENTER_ELLIPSIS" />
-      <Button fx:id="enableDateField" layoutX="371.0" layoutY="312.0" mnemonicParsing="false" onAction="#enableDateClicked" style="-fx-background-color: #ddf8e8;" text="edit" textFill="#615055" textOverrun="CENTER_ELLIPSIS" />
-      <Button fx:id="enableRelationField" layoutX="371.0" layoutY="356.0" mnemonicParsing="false" onAction="#enableRelationBoxClicked" style="-fx-background-color: #ddf8e8;" text="edit" textFill="#615055" textOverrun="CENTER_ELLIPSIS" />
+      <Button fx:id="enableNameField" layoutX="371.0" layoutY="266.0" mnemonicParsing="false" onAction="#enableNameFieldClicked" style="-fx-background-color: E0D4FC;" text="edit" textFill="#672fb8" textOverrun="CENTER_ELLIPSIS" />
+      <Button fx:id="enableDateField" layoutX="371.0" layoutY="312.0" mnemonicParsing="false" onAction="#enableDateClicked" style="-fx-background-color: E0D4FC;" text="edit" textFill="#672fb8" textOverrun="CENTER_ELLIPSIS" />
+      <Button fx:id="enableRelationField" layoutX="371.0" layoutY="356.0" mnemonicParsing="false" onAction="#enableRelationBoxClicked" style="-fx-background-color: E0D4FC;" text="edit" textFill="#672fb8" textOverrun="CENTER_ELLIPSIS" />
       <DatePicker fx:id="birthday" layoutX="81.0" layoutY="306.0" prefHeight="36.0" prefWidth="287.0" promptText="BIRTHDAY" />
       <ComboBox fx:id="relationComboBox" editable="true" layoutX="81.0" layoutY="350.0" prefHeight="36.0" prefWidth="286.0" promptText="RELATION" />
       <ComboBox fx:id="personComboBox" editable="true" layoutX="80.0" layoutY="188.0" prefHeight="36.0" prefWidth="287.0" promptText="PERSON" />
@@ -43,9 +43,9 @@
             <Font name="System Bold" size="13.0" />
          </font>
       </Label>
-      <Button layoutX="87.0" layoutY="479.0" mnemonicParsing="false" onAction="#deleteButtonClicked" prefHeight="36.0" prefWidth="273.0" style="-fx-background-color: #ddd6d8;" text="DELETE SELECTED PERSON" textFill="#615055" textOverrun="CENTER_WORD_ELLIPSIS">
+      <Button layoutX="87.0" layoutY="479.0" mnemonicParsing="false" onAction="#deleteButtonClicked" prefHeight="36.0" prefWidth="273.0" style="-fx-background-color: B2A6CE;" text="DELETE SELECTED PERSON" textFill="WHITE" textOverrun="CENTER_WORD_ELLIPSIS">
          <font>
-            <Font name="System Bold" size="14.0" />
+            <Font name="Leelawadee UI Bold" size="14.0" />
          </font>
       </Button>
    </children>

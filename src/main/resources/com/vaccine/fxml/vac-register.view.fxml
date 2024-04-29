@@ -11,25 +11,25 @@
 
 <AnchorPane fx:id="loginAnchor" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="455.0" prefWidth="393.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.vaccine.Controller.RegisterController">
    <children>
-      <AnchorPane layoutX="4.0" prefHeight="453.0" prefWidth="385.0">
+      <AnchorPane layoutX="-4.0" prefHeight="455.0" prefWidth="401.0" style="-fx-background-color: E0D4FC;">
          <children>
-            <Text fontSmoothingType="LCD" layoutX="40.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Registration" wrappingWidth="165.41015625">
+            <Text fontSmoothingType="LCD" layoutX="50.0" layoutY="65.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Registration" wrappingWidth="165.41015625">
                <font>
-                  <Font name="Calibri Bold" size="27.0" />
+                  <Font name="Leelawadee UI Bold" size="27.0" />
                </font>
             </Text>
             <PasswordField fx:id="passwordField" layoutX="43.0" layoutY="281.0" prefHeight="36.0" prefWidth="287.0" promptText="PASSWORD" />
             <TextField fx:id="usernameField" layoutX="43.0" layoutY="98.0" prefHeight="36.0" prefWidth="286.0" promptText="USERNAME" />
-            <Button layoutX="50.0" layoutY="338.0" mnemonicParsing="false" onAction="#onGoRegisterButtonClick" prefHeight="36.0" prefWidth="273.0" style="-fx-background-color: #615055;" text="Sign Up" textFill="WHITE">
+            <Button layoutX="50.0" layoutY="338.0" mnemonicParsing="false" onAction="#onGoRegisterButtonClick" prefHeight="36.0" prefWidth="273.0" style="-fx-background-color: #43326E;" text="Sign Up" textFill="WHITE">
                <font>
                   <Font name="Calibri Bold" size="16.0" />
                </font>
             </Button>
             <TextField fx:id="emailField" layoutX="43.0" layoutY="144.0" prefHeight="36.0" prefWidth="286.0" promptText="E-MAIL" />
             <DatePicker fx:id="birthday" layoutX="43.0" layoutY="235.0" prefHeight="36.0" prefWidth="286.0" promptText="BIRTHDAY" />
-            <Button layoutX="50.0" layoutY="383.0" mnemonicParsing="false" onAction="#onGoBackButtonClick" prefHeight="36.0" prefWidth="273.0" style="-fx-background-color: #ddd6d8;" text="GO TO LOGIN " textFill="WHITE" textOverrun="CENTER_WORD_ELLIPSIS">
+            <Button layoutX="50.0" layoutY="383.0" mnemonicParsing="false" onAction="#onGoBackButtonClick" prefHeight="36.0" prefWidth="273.0" style="-fx-background-color: B2A6CE;" text="GO TO LOGIN " textFill="WHITE" textOverrun="CENTER_WORD_ELLIPSIS">
                <font>
-                  <Font name="System Bold" size="14.0" />
+                  <Font name="Leelawadee UI Bold" size="14.0" />
                </font>
             </Button>
             <Label fx:id="infoLabel" layoutX="45.0" layoutY="73.0" prefHeight="17.0" prefWidth="287.0" textFill="#e80f0f">

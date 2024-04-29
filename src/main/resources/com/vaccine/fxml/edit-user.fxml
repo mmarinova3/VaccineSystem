@@ -8,19 +8,19 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane fx:id="mainAnchor" minHeight="0.0" minWidth="0.0" prefHeight="584.0" prefWidth="426.0" style="-fx-background-color: #ddf8e8;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.vaccine.Controller.EditUserController">
+<AnchorPane fx:id="mainAnchor" minHeight="0.0" minWidth="0.0" prefHeight="570.0" prefWidth="538.0" style="-fx-background-color: #E0D4FC;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.vaccine.Controller.EditUserController">
    <children>
       <Text fontSmoothingType="LCD" layoutX="99.0" layoutY="182.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EDIT USER INFO" wrappingWidth="228.41015625">
          <font>
-            <Font name="Calibri Bold" size="27.0" />
+            <Font name="Leelawadee Bold" size="27.0" />
          </font>
       </Text>
       <PasswordField fx:id="confirmPasswordField" layoutX="71.0" layoutY="355.0" prefHeight="36.0" prefWidth="287.0" promptText="CONFIRM PASSWORD" />
       <TextField fx:id="usernameField" layoutX="70.0" layoutY="213.0" prefHeight="36.0" prefWidth="286.0" promptText="USERNAME" />
       <TextField fx:id="emailField" layoutX="70.0" layoutY="262.0" prefHeight="36.0" prefWidth="286.0" promptText="E-MAIL" />
-      <Button fx:id="saveChangesButton" layoutX="77.0" layoutY="436.0" mnemonicParsing="false" onAction="#saveChangesClicked" prefHeight="36.0" prefWidth="273.0" style="-fx-background-color: #ddd6d8;" text="SAVE CHANGES" textFill="#615055" textOverrun="CENTER_WORD_ELLIPSIS">
+      <Button fx:id="saveChangesButton" layoutX="77.0" layoutY="436.0" mnemonicParsing="false" onAction="#saveChangesClicked" prefHeight="36.0" prefWidth="273.0" style="-fx-background-color: #6E5C9A;" text="SAVE CHANGES" textFill="WHITE" textOverrun="CENTER_WORD_ELLIPSIS">
          <font>
-            <Font name="System Bold" size="14.0" />
+            <Font name="Leelawadee UI Bold" size="14.0" />
          </font>
       </Button>
       <Label fx:id="infoLabel" layoutX="63.0" layoutY="551.0" prefHeight="17.0" prefWidth="287.0" textFill="#e80f0f">
@@ -29,15 +29,24 @@
          </font>
       </Label>
       <PasswordField fx:id="passwordField" layoutX="71.0" layoutY="308.0" prefHeight="36.0" prefWidth="287.0" promptText="PASSWORD" />
-      <Button fx:id="personManagementButton" layoutX="49.0" layoutY="80.0" mnemonicParsing="false" onAction="#openPersonManagement" prefHeight="36.0" prefWidth="330.0" style="-fx-background-color: dddddd;" text="GO TO PERSON MANAGMENT" textFill="#615055" textOverrun="CENTER_WORD_ELLIPSIS">
+      <Button fx:id="personManagementButton" layoutX="49.0" layoutY="80.0" mnemonicParsing="false" onAction="#openPersonManagement" prefHeight="36.0" prefWidth="330.0" style="-fx-background-color: B2A6CE;" text="GO TO PERSON MANAGMENT" textFill="WHITE" textOverrun="CENTER_WORD_ELLIPSIS">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
       </Button>
-      <Button fx:id="enableUsernameField" layoutX="367.0" layoutY="219.0" mnemonicParsing="false" onAction="#enableUsernameFieldClicked" style="-fx-background-color: #ddf8e8;" text="edit" textFill="#615055" textOverrun="CENTER_ELLIPSIS" />
-      <Button fx:id="enableEmailField" layoutX="367.0" layoutY="268.0" mnemonicParsing="false" onAction="#enableEmailFieldClicked" style="-fx-background-color: #ddf8e8;" text="edit" textFill="#615055" textOverrun="CENTER_ELLIPSIS" />
-      <Button fx:id="enablePasswordField" layoutX="367.0" layoutY="314.0" mnemonicParsing="false" onAction="#enablePasswordFieldClicked" style="-fx-background-color: #ddf8e8;" text="edit" textFill="#615055" textOverrun="CENTER_ELLIPSIS" />
-      <Button layoutX="48.0" layoutY="33.0" mnemonicParsing="false" onAction="#openAddPerson" prefHeight="36.0" prefWidth="330.0" style="-fx-background-color: dddddd;" text="ADD NEW PERSON" textFill="#615055" textOverrun="CENTER_WORD_ELLIPSIS">
+      <Button fx:id="enableUsernameField" layoutX="367.0" layoutY="219.0" mnemonicParsing="false" onAction="#enableUsernameFieldClicked" style="-fx-background-color: #E0D4FC;" text="edit" textFill="#672fb8" textOverrun="CENTER_ELLIPSIS">
+         <font>
+            <Font name="Leelawadee UI" size="12.0" />
+         </font></Button>
+      <Button fx:id="enableEmailField" layoutX="367.0" layoutY="268.0" mnemonicParsing="false" onAction="#enableEmailFieldClicked" style="-fx-background-color: #E0D4FC;" text="edit" textFill="#672fb8" textOverrun="CENTER_ELLIPSIS">
+         <font>
+            <Font name="Leelawadee UI" size="12.0" />
+         </font></Button>
+      <Button fx:id="enablePasswordField" layoutX="367.0" layoutY="314.0" mnemonicParsing="false" onAction="#enablePasswordFieldClicked" style="-fx-background-color: #E0D4FC;" text="edit" textFill="#672fb8" textOverrun="CENTER_ELLIPSIS">
+         <font>
+            <Font name="Leelawadee UI" size="12.0" />
+         </font></Button>
+      <Button layoutX="48.0" layoutY="33.0" mnemonicParsing="false" onAction="#openAddPerson" prefHeight="36.0" prefWidth="330.0" style="-fx-background-color: B2A6CE;" text="ADD NEW PERSON" textFill="WHITE" textOverrun="CENTER_WORD_ELLIPSIS">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
