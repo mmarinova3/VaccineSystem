@@ -2,13 +2,11 @@ package com.vaccine.Model.DAO;
 
 import com.vaccine.Model.Entity.User;
 import com.vaccine.Model.Entity.Vaccine;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityTransaction;
-import jakarta.persistence.PersistenceException;
-import jakarta.persistence.TypedQuery;
+import jakarta.persistence.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -86,6 +84,40 @@ public class VaccineDAO implements DAO<Vaccine> {
                 transaction.rollback();
                 log.error("Vaccine delete error: " + e.getMessage(), e);
             }
+        }
+    }
+
+    public List<Vaccine> getUnassignedVaccinesForPerson(int personId) {
+        try {
+            TypedQuery<Vaccine> query = entityManager.createQuery(
+                    "SELECT v FROM Vaccine v " +
+                            "LEFT JOIN PersonVaccine pv " +
+                            "ON v.id = pv.vaccine.id AND pv.person.id = :personId " +
+                            "WHERE pv.vaccine IS NULL", Vaccine.class);
+            query.setParameter("personId", personId);
+            return query.getResultList();
+        } catch (NoResultException e) {
+            return Collections.emptyList();
+        } catch (Exception e) {
+            log.error("Error finding unassigned vaccines for person: " + e.getMessage(), e);
+            return Collections.emptyList();
+        }
+    }
+
+    public List<Vaccine> getAssignedVaccinesForPerson(int personId) {
+        try {
+            TypedQuery<Vaccine> query = entityManager.createQuery(
+                    "SELECT v FROM Vaccine v " +
+                            "LEFT JOIN PersonVaccine pv " +
+                            "ON v.id = pv.vaccine.id AND pv.person.id = :personId " +
+                            "WHERE pv.vaccine IS NOT NULL", Vaccine.class);
+            query.setParameter("personId", personId);
+            return query.getResultList();
+        } catch (NoResultException e) {
+            return Collections.emptyList();
+        } catch (Exception e) {
+            log.error("Error finding assigned vaccines for person: " + e.getMessage(), e);
+            return Collections.emptyList();
         }
     }
 }

@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -22,9 +23,9 @@ public class Main extends Application {
         FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("/com/vaccine/fxml/vac-login-view.fxml"));
         Parent root = fxmlLoader.load();
         Scene scene = new Scene(root);
-        primaryStage.setTitle("VaccTrace");
+        primaryStage.setTitle("VacTrace");
         primaryStage.setResizable(false);
-        //primaryStage.initStyle(StageStyle.TRANSPARENT);
+        primaryStage.initStyle(StageStyle.TRANSPARENT);
         primaryStage.setScene(scene);
         primaryStage.show();
     }
@@ -57,4 +58,7 @@ public class Main extends Application {
     public static void main(String[] args) {
         launch(args);
     }
+
+
+
 }

@@ -1,14 +1,13 @@
 package com.vaccine.Model.DAO;
 
+import com.vaccine.Model.Entity.Person;
 import com.vaccine.Model.Entity.PersonVaccine;
 import com.vaccine.Model.Entity.User;
-import jakarta.persistence.EntityManager;
-import jakarta.persistence.EntityTransaction;
-import jakarta.persistence.PersistenceException;
-import jakarta.persistence.TypedQuery;
+import jakarta.persistence.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
 
@@ -32,7 +31,7 @@ public class PersonVaccineDAO implements DAO<PersonVaccine> {
     @Override
     public List<PersonVaccine> getAll() {
         try {
-            TypedQuery<PersonVaccine> query = entityManager.createQuery("SELECT u PersonVaccine User u", PersonVaccine.class);
+            TypedQuery<PersonVaccine> query = entityManager.createQuery("SELECT u FROM PersonVaccine u", PersonVaccine.class);
             return query.getResultList();
         } catch (Exception e) {
             log.error("PersonVaccine getAll error: " + e.getMessage(), e);
@@ -87,4 +86,33 @@ public class PersonVaccineDAO implements DAO<PersonVaccine> {
             }
         }
     }
+
+    public List<PersonVaccine> getVaccinePersonsList(int personId) {
+        try {
+            Query query = entityManager.createQuery("SELECT v FROM PersonVaccine v WHERE v.person.id = :personId");
+            query.setParameter("personId", personId);
+            return query.getResultList();
+        } catch (NoResultException e) {
+            log.info("empty list");
+            return Collections.emptyList();
+        } catch (Exception e) {
+            log.error("Error finding vaccine list by person ID: " + e.getMessage(), e);
+            return null;
+        }
+    }
+
+    public PersonVaccine getByPersonAndVaccineId(int personId, int vaccineId) {
+        try {
+            Query query = entityManager.createQuery("SELECT v FROM PersonVaccine v WHERE v.person.id = :personId and v.vaccine.id = :vaccineId");
+            query.setParameter("personId", personId);
+            query.setParameter("vaccineId", vaccineId);
+            return (PersonVaccine) query.getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        } catch (Exception e) {
+            log.error("PersonVaccine get error: " + e.getMessage(), e);
+            return null;
+        }
+    }
+
 }

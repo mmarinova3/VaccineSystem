@@ -38,7 +38,7 @@ public class VaccineManagementController {
     private final VaccineService vaccineService;
     private static final Logger log = LogManager.getLogger(LoginController.class);
     public VaccineManagementController() {
-        this.vaccineService = VaccineService.getInstance(Connection.getEntityManager(), Session.getInstance());
+        this.vaccineService = VaccineService.getInstance(Connection.getEntityManager());
     }
     @FXML
     public void initialize() {

@@ -3,7 +3,6 @@ package com.vaccine.Controller;
 import com.vaccine.Model.Entity.Vaccine;
 import com.vaccine.Service.VaccineService;
 import com.vaccine.Utils.Connection;
-import com.vaccine.Utils.Session;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -30,11 +29,11 @@ public class VaccineInfoController {
     private static final Logger log = LogManager.getLogger(LoginController.class);
 
     public VaccineInfoController() {
-        this.vaccineService = VaccineService.getInstance(Connection.getEntityManager(), Session.getInstance());
+        this.vaccineService = VaccineService.getInstance(Connection.getEntityManager());
     }
     @FXML
     public void initialize() {
-       // moreInfoArea.setDisable(true);
+        moreInfoArea.setDisable(false);
         populateVaccineTable();
         vaccineTableView.getSelectionModel().selectedItemProperty().addListener((obs, oldSelection, newSelection) -> {
             if (newSelection != null) {
@@ -91,7 +90,6 @@ public class VaccineInfoController {
 
         ObservableList<Vaccine> filteredVaccines = FXCollections.observableArrayList();
         boolean matchFound = false;
-        log.info(matchFound);
 
         for (Vaccine vaccine : vaccineTableView.getItems()) {
             if (vaccineContainsKeyword(vaccine, keyword)) {

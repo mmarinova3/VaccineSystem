@@ -1,51 +1,69 @@
 package com.vaccine.Controller;
 
+import com.vaccine.Model.Entity.PersonVaccine;
+import com.vaccine.Model.Entity.Vaccine;
 import com.vaccine.Service.PersonService;
+import com.vaccine.Service.PersonVaccineService;
 import com.vaccine.Service.UserService;
+import com.vaccine.Service.VaccineService;
 import com.vaccine.Utils.Connection;
 import com.vaccine.Utils.SceneNavigator;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.fxml.Initializable;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import com.vaccine.Utils.Session;
-import com.vaccine.Model.Entity.User;
 import com.vaccine.Model.Entity.Person;
 import com.vaccine.VaccineSystem.Main;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+
 import java.io.IOException;
-import java.net.URL;
+import java.sql.Date;
+import java.time.LocalDate;
+import java.time.Period;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
 
 
-public class HomePageController implements Initializable {
+public class HomePageController  {
     @FXML
     private AnchorPane mainAnchor;
     @FXML
     private VBox personVBox;
     @FXML
-    private ScrollPane rightPane;
+    private AnchorPane rightPane;
+    @FXML
+    private AnchorPane calendarPane;
+    @FXML
+    private BorderPane homePane;
 
     private final UserService userService;
     private final PersonService personService;
-
+    private final VaccineService vaccineService;
+    private final PersonVaccineService personVaccineService;
+    private CalendarController calendarController;
     private final Session session = Session.getInstance();
 
     private static final Logger log = LogManager.getLogger(LoginController.class);
      public  HomePageController(){
-
      this.userService = UserService.getInstance(Connection.getEntityManager(), Session.getInstance());
-        this.personService = PersonService.getInstance(Connection.getEntityManager(),Session.getInstance());
+     this.personService = PersonService.getInstance(Connection.getEntityManager(),Session.getInstance());
+     this.personVaccineService = PersonVaccineService.getInstance(Connection.getEntityManager(), Session.getInstance());
+     this.vaccineService = VaccineService.getInstance(Connection.getEntityManager());
      }
 
     @FXML
-    public void initialize() {
-
+    public void initialize()  {
+        uncheckVaccine();
+        showVaccineNotifications();
+        showCalendar();
     }
 
     @FXML
@@ -54,30 +72,6 @@ public class HomePageController implements Initializable {
         app.changeScene("/com/vaccine/fxml/vac-login-view.fxml",747, 438,false);
     }
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
-        List<Person> persons = persons();
-
-        for (Person person : persons) {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("/com/vaccine/fxml/person-pane.fxml"));
-
-            try {
-                Pane anchorPane = fxmlLoader.load();
-                PersonPaneController personPaneController = fxmlLoader.getController();
-                personPaneController.setPersonPaneData(person);
-                personVBox.getChildren().add(anchorPane);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-        }
-    }
-
-    private List<Person> persons(){
-        User currentUser = session.getUser();
-        int currentUserId = currentUser.getId();
-        return  personService.getPersonsList(currentUserId);
-    }
 
     @FXML
     private void openUserEditScene() {
@@ -102,9 +96,125 @@ public class HomePageController implements Initializable {
         rightPane.setVisible(true);
         SceneNavigator.navigateTo("/com/vaccine/fxml/vaccine-person.fxml", mainAnchor);
     }
+
+    @FXML
+    private void openCalendarView() {
+        rightPane.setVisible(false);
+        SceneNavigator.navigateTo("/com/vaccine/fxml/calendar-view.fxml", mainAnchor);
+    }
+
     @FXML
     private void openHomeView() throws IOException {
          Main app = new Main();
         app.changeScene("/com/vaccine/fxml/vac-main.fxml",1000,600,true);
+    }
+
+    private List<PersonVaccine> checkNotificatonList() {
+        List<Person> personList = personService.getPersonsList(session.getUser().getId());
+        List<PersonVaccine> personVaccineToDo = new ArrayList<>();
+
+        for (Person person : personList) {
+            Period age = Period.between(Date.valueOf(String.valueOf(person.getDateOfBirth())).toLocalDate(), LocalDate.now());
+            int personAge = age.getYears();
+            List<Vaccine> unmadeVaccines = vaccineService.getUnassignedVaccinesForPerson(person.getId());
+            if(!unmadeVaccines.isEmpty()){
+                for (Vaccine vaccine : unmadeVaccines) {
+                    if (vaccine.getAgeOfUse() <= personAge) {
+                        PersonVaccine newPV = createNewPersonVaccine(personService.getById(person.getId()),vaccineService.getById(vaccine.getId()));
+                        personVaccineToDo.add(newPV);
+                    }
+                }
+            }
+        }
+        log.info("Size hole list: " + personVaccineToDo.size());
+        return personVaccineToDo;
+    }
+
+    private void uncheckVaccine(){
+        List<Person> personList = personService.getPersonsList(session.getUser().getId());
+        for (Person person : personList) {
+            List<Vaccine> madeVaccines = vaccineService.getAssignedVaccinesForPerson(person.getId());
+            if(!madeVaccines.isEmpty()) {
+                for (Vaccine vaccine : madeVaccines) {
+                    if (!vaccine.isOneTime()) {
+                        PersonVaccine pv = personVaccineService.getByPersonAndVaccineId(person.getId(),vaccine.getId());
+                        long daysBetween = Math.abs(ChronoUnit.DAYS.between(LocalDate.now(), pv.getVaccinationDate().toLocalDate()));
+                        if (daysBetween > vaccine.getEffectivenessPeriod()) {
+                            pv.setMade(false);
+                            personVaccineService.delete(pv);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    private PersonVaccine createNewPersonVaccine(Person person, Vaccine vaccine) {
+        PersonVaccine newPV = new PersonVaccine();
+        newPV.setPerson(person);
+        newPV.setVaccine(vaccine);
+        newPV.setMade(false);
+        newPV.setVaccinationDate(Date.valueOf(LocalDate.now()));
+        return newPV;
+    }
+    @FXML
+    private void showVaccineNotifications(){
+        try {
+            List<PersonVaccine> pvList = checkNotificatonList();
+            if (!pvList.isEmpty()) {
+                for (PersonVaccine pv : pvList) {
+                    FXMLLoader fxmlLoader = new FXMLLoader();
+                    fxmlLoader.setLocation(getClass().getResource("/com/vaccine/fxml/person-pane.fxml"));
+                    Pane anchorPane = fxmlLoader.load();
+                    PersonPaneController personPaneController = fxmlLoader.getController();
+
+                    personPaneController.setPersonPaneData(
+                            pv.getPerson(),
+                            pv.getVaccine(),
+                            pv.getVaccinationDate().toString()
+                    );
+                    personVBox.getChildren().add(anchorPane);
+                }
+
+            } else {
+                log.info("No notifications");
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    @FXML
+    private void showCalendar() {
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/vaccine/fxml/calendar-view.fxml"));
+            AnchorPane anchorPane = fxmlLoader.load();
+            calendarController = fxmlLoader.getController();
+
+            AnchorPane.setTopAnchor(anchorPane, 0.0);
+            AnchorPane.setBottomAnchor(anchorPane, 0.0);
+            AnchorPane.setLeftAnchor(anchorPane, 0.0);
+            AnchorPane.setRightAnchor(anchorPane, 0.0);
+
+            calendarController.drawCalendar(); // Ensure calendar is drawn
+            calendarPane.getChildren().setAll(anchorPane);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+
+    @FXML
+    private void minimizeApp() {
+        Stage stage = (Stage) homePane.getScene().getWindow();
+        if (stage != null) {
+            stage.setIconified(true);
+        }
+    }
+
+    @FXML
+    private void closeApp() {
+        log.info("Exit app...");
+        Platform.exit();
     }
 }

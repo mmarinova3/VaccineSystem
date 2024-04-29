@@ -42,4 +42,9 @@ public class PersonVaccineService {
     public void delete(PersonVaccine personVaccine) {
         personVaccineDAO.delete(personVaccine);
     }
+
+    public List<PersonVaccine> getByPersonId(int Id) {
+        return personVaccineDAO.getVaccinePersonsList(Id);
+    }
+    public PersonVaccine getByPersonAndVaccineId(int personId,int vaccineId){return personVaccineDAO.getByPersonAndVaccineId(personId,vaccineId);}
 }
