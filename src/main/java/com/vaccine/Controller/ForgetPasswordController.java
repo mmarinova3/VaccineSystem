@@ -7,8 +7,6 @@ import com.vaccine.Utils.Session;
 import com.vaccine.VaccineSystem.Main;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 
@@ -29,7 +27,6 @@ public class ForgetPasswordController {
 
     private final UserService userService;
 
-    private static final Logger log = LogManager.getLogger(LoginController.class);
     public ForgetPasswordController() {
         this.userService = UserService.getInstance(Connection.getEntityManager(), Session.getInstance());
     }

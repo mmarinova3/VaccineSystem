@@ -2,25 +2,22 @@ package com.vaccine.Service;
 
 import com.vaccine.Model.DAO.PersonDAO;
 import com.vaccine.Model.Entity.Person;
-import com.vaccine.Utils.Session;
 import jakarta.persistence.EntityManager;
 
 import java.util.List;
-import java.util.Optional;
-
 
 public class PersonService {
 
     private static PersonService INSTANCE = null;
     private final PersonDAO personDAO;
 
-    private PersonService(EntityManager entityManager, Session session) {
+    private PersonService(EntityManager entityManager) {
         this.personDAO = new PersonDAO(entityManager);
     }
 
-    public static PersonService getInstance(EntityManager entityManager, Session session) {
+    public static PersonService getInstance(EntityManager entityManager) {
         if (INSTANCE == null) {
-            INSTANCE = new PersonService(entityManager, session);
+            INSTANCE = new PersonService(entityManager);
         }
         return INSTANCE;
     }

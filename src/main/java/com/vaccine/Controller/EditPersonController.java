@@ -41,7 +41,7 @@ public class EditPersonController {
     private final Session session = Session.getInstance();
     private static final Logger log = LogManager.getLogger(LoginController.class);
     public EditPersonController() {
-        this.personService = PersonService.getInstance(Connection.getEntityManager(), Session.getInstance());
+        this.personService = PersonService.getInstance(Connection.getEntityManager());
     }
 
     @FXML

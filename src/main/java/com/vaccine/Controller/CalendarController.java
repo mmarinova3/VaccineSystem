@@ -24,7 +24,6 @@ import java.sql.Date;
 import java.time.LocalDate;
 import java.time.Period;
 import java.time.ZonedDateTime;
-import java.time.temporal.ChronoUnit;
 import java.util.*;
 
 // Random Code
@@ -50,8 +49,8 @@ public class CalendarController implements Initializable {
 
     // Constructor initializing services
     public CalendarController() {
-        this.personVaccineService = PersonVaccineService.getInstance(Connection.getEntityManager(), Session.getInstance());
-        this.personService = PersonService.getInstance(Connection.getEntityManager(), Session.getInstance());
+        this.personVaccineService = PersonVaccineService.getInstance(Connection.getEntityManager());
+        this.personService = PersonService.getInstance(Connection.getEntityManager());
         this.vaccineService = VaccineService.getInstance(Connection.getEntityManager());
     }
 

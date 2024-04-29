@@ -3,7 +3,6 @@ package com.vaccine.Controller;
 import com.vaccine.Model.Entity.PersonVaccine;
 import com.vaccine.Service.PersonVaccineService;
 import com.vaccine.Utils.Connection;
-import com.vaccine.Utils.Session;
 import javafx.fxml.FXML;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
@@ -27,7 +26,7 @@ public class PersonVaccineDetailsController {
     private static final Logger log = LogManager.getLogger(LoginController.class);
 
     public PersonVaccineDetailsController() {
-        this.personVaccineService = PersonVaccineService.getInstance(Connection.getEntityManager(), Session.getInstance());
+        this.personVaccineService = PersonVaccineService.getInstance(Connection.getEntityManager());
     }
 
     public void setPersonVaccine(PersonVaccine personVaccine) {

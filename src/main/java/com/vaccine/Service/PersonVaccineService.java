@@ -6,19 +6,18 @@ import com.vaccine.Utils.Session;
 import jakarta.persistence.EntityManager;
 
 import java.util.List;
-import java.util.Optional;
 
 public class PersonVaccineService {
     private static PersonVaccineService INSTANCE = null;
     private final PersonVaccineDAO personVaccineDAO;
 
-    private PersonVaccineService(EntityManager entityManager, Session session) {
+    private PersonVaccineService(EntityManager entityManager) {
         this.personVaccineDAO = new PersonVaccineDAO(entityManager);
     }
 
-    public static PersonVaccineService getInstance(EntityManager entityManager, Session session) {
+    public static PersonVaccineService getInstance(EntityManager entityManager) {
         if (INSTANCE == null) {
-            INSTANCE = new PersonVaccineService(entityManager,session);
+            INSTANCE = new PersonVaccineService(entityManager);
         }
         return INSTANCE;
     }

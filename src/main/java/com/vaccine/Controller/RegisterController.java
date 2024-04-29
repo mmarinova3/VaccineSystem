@@ -36,7 +36,7 @@ public class RegisterController {
 
     public RegisterController() {
         this.userService = UserService.getInstance(Connection.getEntityManager(), Session.getInstance());
-        this.personService = PersonService.getInstance(Connection.getEntityManager(),Session.getInstance());
+        this.personService = PersonService.getInstance(Connection.getEntityManager());
     }
 
     @FXML

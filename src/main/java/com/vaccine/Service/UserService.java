@@ -7,7 +7,6 @@ import com.vaccine.Utils.Session;
 import jakarta.persistence.EntityManager;
 
 import java.util.List;
-import java.util.Optional;
 
 public class UserService {
     private static UserService INSTANCE = null;

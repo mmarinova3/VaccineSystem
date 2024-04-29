@@ -8,8 +8,7 @@ import com.vaccine.Utils.Session;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+
 
 public class EditUserController {
 
@@ -34,7 +33,6 @@ public class EditUserController {
 
     private final Session session = Session.getInstance();
 
-    private static final Logger log = LogManager.getLogger(LoginController.class);
     public EditUserController() {
         this.userService = UserService.getInstance(Connection.getEntityManager(), Session.getInstance());
     }

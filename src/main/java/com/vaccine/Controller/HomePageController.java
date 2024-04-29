@@ -11,14 +11,12 @@ import com.vaccine.Utils.SceneNavigator;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.ScrollPane;
+import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import com.vaccine.Utils.Session;
 import com.vaccine.Model.Entity.Person;
 import com.vaccine.VaccineSystem.Main;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -43,6 +41,8 @@ public class HomePageController  {
     private AnchorPane calendarPane;
     @FXML
     private BorderPane homePane;
+    @FXML
+    private Button addVaccineButton;
 
     private final UserService userService;
     private final PersonService personService;
@@ -54,8 +54,8 @@ public class HomePageController  {
     private static final Logger log = LogManager.getLogger(LoginController.class);
      public  HomePageController(){
      this.userService = UserService.getInstance(Connection.getEntityManager(), Session.getInstance());
-     this.personService = PersonService.getInstance(Connection.getEntityManager(),Session.getInstance());
-     this.personVaccineService = PersonVaccineService.getInstance(Connection.getEntityManager(), Session.getInstance());
+     this.personService = PersonService.getInstance(Connection.getEntityManager());
+     this.personVaccineService = PersonVaccineService.getInstance(Connection.getEntityManager());
      this.vaccineService = VaccineService.getInstance(Connection.getEntityManager());
      }
 
@@ -64,6 +64,11 @@ public class HomePageController  {
         uncheckVaccine();
         showVaccineNotifications();
         showCalendar();
+
+
+        if(!Objects.equals(session.getUser().getUsername(), "admin")){
+          addVaccineButton.setVisible(false);
+        }
     }
 
     @FXML

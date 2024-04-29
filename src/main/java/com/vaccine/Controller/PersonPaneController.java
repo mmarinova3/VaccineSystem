@@ -7,8 +7,6 @@ import com.vaccine.Service.PersonService;
 import com.vaccine.Service.PersonVaccineService;
 import com.vaccine.Service.VaccineService;
 import com.vaccine.Utils.Connection;
-import com.vaccine.Utils.SceneNavigator;
-import com.vaccine.Utils.Session;
 import com.vaccine.VaccineSystem.Main;
 import javafx.fxml.FXML;
 import javafx.scene.control.CheckBox;
@@ -46,8 +44,8 @@ public class PersonPaneController {
     private int personId, vaccineId;
     public PersonPaneController() {
         this.vaccineService = VaccineService.getInstance(Connection.getEntityManager());
-        this.personVaccineService = PersonVaccineService.getInstance(Connection.getEntityManager(), Session.getInstance());
-        this.personService = PersonService.getInstance(Connection.getEntityManager(), Session.getInstance());
+        this.personVaccineService = PersonVaccineService.getInstance(Connection.getEntityManager());
+        this.personService = PersonService.getInstance(Connection.getEntityManager());
     }
 
     public void setPersonPaneData(Person p, Vaccine v , String period) {

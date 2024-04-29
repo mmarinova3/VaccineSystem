@@ -6,7 +6,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.List;
-import java.util.Optional;
 
 public class UserDAO implements DAO<User> {
     private final static Logger log = LogManager.getLogger(User.class);

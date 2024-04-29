@@ -27,8 +27,6 @@ import org.controlsfx.control.CheckListView;
 import java.io.IOException;
 import java.sql.Date;
 import java.time.LocalDate;
-import java.time.Period;
-import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -49,8 +47,8 @@ public class PersonVaccineController {
     private final Session session = Session.getInstance();
     private static final Logger log = LogManager.getLogger(LoginController.class);
     public PersonVaccineController() {
-        this.personVaccineService = PersonVaccineService.getInstance(Connection.getEntityManager(), Session.getInstance());
-        this.personService = PersonService.getInstance(Connection.getEntityManager(), Session.getInstance());
+        this.personVaccineService = PersonVaccineService.getInstance(Connection.getEntityManager());
+        this.personService = PersonService.getInstance(Connection.getEntityManager());
         this.vaccineService = VaccineService.getInstance(Connection.getEntityManager());
     }
 
@@ -247,27 +245,4 @@ public class PersonVaccineController {
             log.error("Error loading details pane: " + e.getMessage());
         }
     }
-
-    private void notifyUser(Person person, Vaccine vaccine, PersonVaccine pv){
-        if (pv.isMade()){
-            long daysBetween = ChronoUnit.DAYS.between(pv.getVaccinationDate().toLocalDate(),  LocalDate.now());
-
-            if (!vaccine.isOneTime()|| daysBetween > vaccine.getEffectivenessPeriod()){
-                pv.setMade(false);
-                return;
-            }
-
-            Period age = Period.between(Date.valueOf(String.valueOf(person.getDateOfBirth())).toLocalDate(), LocalDate.now());
-            int personAge = age.getYears();
-
-            if (vaccine.getAgeOfUse() >= personAge ||!pv.isMade()){
-               //notify
-            }
-
-        }
-
-
-    }
-
-
 }

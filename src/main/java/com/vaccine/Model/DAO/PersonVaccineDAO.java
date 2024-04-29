@@ -1,6 +1,5 @@
 package com.vaccine.Model.DAO;
 
-import com.vaccine.Model.Entity.Person;
 import com.vaccine.Model.Entity.PersonVaccine;
 import com.vaccine.Model.Entity.User;
 import jakarta.persistence.*;
@@ -9,7 +8,6 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.Collections;
 import java.util.List;
-import java.util.Optional;
 
 public class PersonVaccineDAO implements DAO<PersonVaccine> {
     private final static Logger log = LogManager.getLogger(User.class);
@@ -100,7 +98,6 @@ public class PersonVaccineDAO implements DAO<PersonVaccine> {
             return null;
         }
     }
-
     public PersonVaccine getByPersonAndVaccineId(int personId, int vaccineId) {
         try {
             Query query = entityManager.createQuery("SELECT v FROM PersonVaccine v WHERE v.person.id = :personId and v.vaccine.id = :vaccineId");

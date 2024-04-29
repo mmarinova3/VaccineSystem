@@ -33,7 +33,7 @@ public class AddPersonController {
 
     private final Session session = Session.getInstance();
     public AddPersonController() {
-        this.personService = PersonService.getInstance(Connection.getEntityManager(), Session.getInstance());
+        this.personService = PersonService.getInstance(Connection.getEntityManager());
     }
     @FXML
     public void initialize() {

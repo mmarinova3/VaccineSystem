@@ -3,7 +3,6 @@ package com.vaccine.Controller;
 import com.vaccine.Model.Entity.Vaccine;
 import com.vaccine.Service.VaccineService;
 import com.vaccine.Utils.Connection;
-import com.vaccine.Utils.Session;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

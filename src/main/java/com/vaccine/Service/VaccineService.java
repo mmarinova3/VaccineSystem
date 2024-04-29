@@ -2,7 +2,6 @@ package com.vaccine.Service;
 
 import com.vaccine.Model.DAO.VaccineDAO;
 import com.vaccine.Model.Entity.Vaccine;
-import com.vaccine.Utils.Session;
 import jakarta.persistence.EntityManager;
 
 import java.util.List;
