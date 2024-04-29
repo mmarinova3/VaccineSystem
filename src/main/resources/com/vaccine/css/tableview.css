@@ -3,6 +3,23 @@
 }
 
 /* Table Header styles */
+.table-view .column-header .label {
+    -fx-text-fill: white; /* Header text color */
+}
+
+.table-view .column-header {
+    -fx-background-color: #43326E; /* Header background color */
+    -fx-border-color: derive(-fx-base, 30%);
+    -fx-font-weight: bold;
+}
+
+/* Cell styles */
+.table-cell {
+    -fx-text-fill: black; /* Cell text color */
+    -fx-border-color: derive(-fx-base, 20%);
+}
+
+/* Table Header styles */
 
 .table-view .column-header {
     -fx-background-color: #43326E; /* Header background color */
@@ -14,7 +31,7 @@
 /* Table Row styles */
 
 .table-row-cell:odd {
-    -fx-background-color: #f5f5f5; /* Alternate row color */
+    -fx-background-color: #B2A6CE; /* Alternate row color */
 }
 
 /* Selected Row styles */

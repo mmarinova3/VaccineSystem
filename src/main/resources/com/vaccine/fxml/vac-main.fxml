@@ -81,16 +81,16 @@
    <center>
     <AnchorPane fx:id="mainAnchor" minHeight="0.0" minWidth="0.0" prefHeight="635.0" prefWidth="581.0" style="-fx-background-color: #E0D4FC;" BorderPane.alignment="CENTER">
          <children>
-            <AnchorPane fx:id="calendarPane" layoutX="120.0" layoutY="145.0" prefHeight="308.0" prefWidth="331.0" style="-fx-background-color: #cccccc;" />
+            <AnchorPane fx:id="calendarPane" layoutX="14.0" layoutY="24.0" prefHeight="308.0" prefWidth="331.0" style="-fx-background-color: #cccccc;" />
          </children>
       </AnchorPane>
    </center>
    <right>
-      <AnchorPane fx:id="rightPane" prefHeight="641.0" prefWidth="278.0" style="-fx-background-color: #E0D4FC;" BorderPane.alignment="CENTER">
+      <AnchorPane fx:id="rightPane" prefHeight="642.0" prefWidth="303.0" style="-fx-background-color: #E0D4FC;" BorderPane.alignment="CENTER">
          <children>
-            <ScrollPane layoutX="3.0" prefHeight="642.0" prefWidth="272.0">
+            <ScrollPane prefHeight="642.0" prefWidth="303.0">
                <content>
-                  <VBox fx:id="personVBox" prefHeight="730.0" prefWidth="276.0" style="-fx-background-color: #B2A6CE;" />
+                  <VBox fx:id="personVBox" prefHeight="734.0" prefWidth="398.0" style="-fx-background-color: #B2A6CE;" />
                </content>
             </ScrollPane>
          </children>

@@ -5,19 +5,19 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane id="addUserRoot" fx:id="editPersonAnchor" minHeight="0.0" minWidth="0.0" prefHeight="631.0" prefWidth="470.0" style="-fx-background-color: #ddf8e8;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.vaccine.Controller.PersonVaccineController">
+<AnchorPane id="addUserRoot" fx:id="editPersonAnchor" minHeight="0.0" minWidth="0.0" prefHeight="631.0" prefWidth="470.0" style="-fx-background-color: E0D4FC;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.vaccine.Controller.PersonVaccineController">
    <children>
-      <ComboBox fx:id="personComboBox" editable="true" layoutX="77.0" layoutY="48.0" prefHeight="36.0" prefWidth="302.0" promptText="PERSON" />
-      <Label layoutX="164.0" layoutY="23.0" text="Choose a person:" textFill="#434141">
+      <ComboBox fx:id="personComboBox" editable="true" layoutX="77.0" layoutY="48.0" prefHeight="36.0" prefWidth="302.0" promptText="PERSON" style="-fx-background-color: #B2A6CE;" />
+      <Label layoutX="164.0" layoutY="23.0" text="Choose a person:" textFill="#43326e">
          <font>
-            <Font name="System Bold" size="13.0" />
+            <Font name="Leelawadee UI Bold" size="13.0" />
          </font>
       </Label>
-      <ComboBox fx:id="filtersComboBox" layoutX="77.0" layoutY="91.0" prefHeight="25.0" prefWidth="302.0" promptText="FILTERS" />
+      <ComboBox fx:id="filtersComboBox" layoutX="77.0" layoutY="91.0" prefHeight="25.0" prefWidth="302.0" promptText="FILTERS" style="-fx-background-color: #B2A6CE;" />
       <AnchorPane fx:id="listAnchorPane" layoutX="77.0" layoutY="153.0" prefHeight="415.0" prefWidth="317.0" />
-      <Label layoutX="92.0" layoutY="122.0" prefHeight="19.0" prefWidth="302.0" text="Click twice on vaccine to add details :)" textFill="#434141">
+      <Label layoutX="92.0" layoutY="122.0" prefHeight="19.0" prefWidth="302.0" text="Click twice on vaccine to add details :)" textFill="#43326e">
          <font>
-            <Font name="System Bold" size="13.0" />
+            <Font name="Leelawadee UI Bold" size="13.0" />
          </font>
       </Label>
    </children>
