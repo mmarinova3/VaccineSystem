@@ -8,9 +8,8 @@ public class CalendarActivity {
     private String clientName;
     private  String vaccineName;
 
-    public CalendarActivity(ZonedDateTime date, String clientName) {
+    public CalendarActivity(ZonedDateTime date) {
         this.date = date;
-        this.clientName = clientName;
     }
 
     public ZonedDateTime getDate() {

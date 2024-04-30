@@ -1,19 +1,24 @@
 package com.vaccine.Controller;
 
+import com.vaccine.Model.Entity.Person;
+import com.vaccine.Model.Entity.PersonVaccine;
+import com.vaccine.Model.Entity.Vaccine;
+import com.vaccine.Service.PersonService;
+import com.vaccine.Service.PersonVaccineService;
+import com.vaccine.Service.VaccineService;
 import com.vaccine.Utils.CalendarActivity;
-import com.vaccine.Model.Entity.*;
-import com.vaccine.Service.*;
-
 import com.vaccine.Utils.Connection;
 import com.vaccine.Utils.Session;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -25,8 +30,7 @@ import java.time.Period;
 import java.time.ZonedDateTime;
 import java.util.*;
 
-// Random Code
-public class CalendarController implements Initializable {
+public class SmallCalendarController  {
 
     ZonedDateTime dateFocus;
     ZonedDateTime today;
@@ -40,32 +44,33 @@ public class CalendarController implements Initializable {
 
     private final PersonService personService;
     private final VaccineService vaccineService;
+    private final PersonVaccineService personVaccineService;
     private final Session session = Session.getInstance();
     private static final Logger log = LogManager.getLogger(LoginController.class);
 
 
-    public CalendarController() {
+    public SmallCalendarController() {
+        this.personVaccineService = PersonVaccineService.getInstance(Connection.getEntityManager());
         this.personService = PersonService.getInstance(Connection.getEntityManager());
         this.vaccineService = VaccineService.getInstance(Connection.getEntityManager());
     }
 
 
-    @Override
-    public void initialize(URL url, ResourceBundle resourceBundle) {
+    public void initialize() {
         dateFocus = ZonedDateTime.now(); // Set focus date to current date
         today = ZonedDateTime.now(); // Set today's date
         drawCalendar(); // Draw the calendar
     }
 
     @FXML
-    void backOneMonth() {
+    void backOneMonth(ActionEvent event) {
         dateFocus = dateFocus.minusMonths(1);
         calendar.getChildren().clear();
         drawCalendar();
     }
 
     @FXML
-    void forwardOneMonth() {
+    void forwardOneMonth(ActionEvent event) {
         dateFocus = dateFocus.plusMonths(1);
         calendar.getChildren().clear();
         drawCalendar();
@@ -95,11 +100,11 @@ public class CalendarController implements Initializable {
 
                 Rectangle rectangle = new Rectangle();
                 rectangle.setFill(Color.TRANSPARENT);
-                rectangle.setStroke(Color.BLACK);
+                rectangle.setStroke(Color.TRANSPARENT);
                 rectangle.setStrokeWidth(strokeWidth);
                 double rectangleWidth = (calendarWidth / 7) - strokeWidth - spacingH;
+                double rectangleHeight = (calendarHeight / 6) - strokeWidth - spacingV+3 ;
                 rectangle.setWidth(rectangleWidth);
-                double rectangleHeight = (calendarHeight / 6) - strokeWidth - spacingV;
                 rectangle.setHeight(rectangleHeight);
                 stackPane.getChildren().add(rectangle);
 
@@ -107,13 +112,14 @@ public class CalendarController implements Initializable {
                 if (calculatedDate > dateOffset) {
                     int currentDate = calculatedDate - dateOffset;
                     if (currentDate <= monthMaxDate) {
-                        Text date = new Text(String.valueOf(currentDate));
+                        Text dateText = new Text(String.valueOf(currentDate));
+                        dateText.setFont(Font.font(15)); // Adjust font size
                         double textTranslationY = - (rectangleHeight / 2) * 0.75;
-                        date.setTranslateY(textTranslationY);
-                        stackPane.getChildren().add(date);
+                        dateText.setTranslateY(textTranslationY);
+                        stackPane.getChildren().add(dateText);
 
                         List<CalendarActivity> calendarActivities = calendarActivityMap.get(currentDate);
-                        if (calendarActivities != null) {
+                        if (calendarActivities != null && !calendarActivities.isEmpty()) {
                             createCalendarActivity(calendarActivities, rectangleHeight, rectangleWidth, stackPane);
                         }
                     }
@@ -125,6 +131,7 @@ public class CalendarController implements Initializable {
             }
         }
     }
+
     private void createCalendarActivity(List<CalendarActivity> calendarActivities, double rectangleHeight, double rectangleWidth, StackPane stackPane) {
         VBox calendarActivityBox = new VBox();
         for (int k = 0; k < calendarActivities.size(); k++) {
@@ -138,22 +145,15 @@ public class CalendarController implements Initializable {
                 break;
             }
             Text text = new Text(calendarActivities.get(k).getClientName());
-            Text vacText = new Text(calendarActivities.get(k).getVaccineName());
             calendarActivityBox.getChildren().add(text);
-            calendarActivityBox.getChildren().add(vacText);
             text.setOnMouseClicked(mouseEvent -> {
-                // On text clicked, print the text
-                System.out.println(text.getText()+"\n"+vacText.getText());
+                System.out.println(text.getText());
             });
         }
-        calendarActivityBox.setTranslateY((rectangleHeight / 2) * 0.20);
-        calendarActivityBox.setMaxWidth((rectangleWidth * 0.8)-20);
-        calendarActivityBox.setMaxHeight(rectangleHeight * 0.65);
-        calendarActivityBox.setStyle("-fx-background-color:#B2A6CE");
-        stackPane.getChildren().add(calendarActivityBox);
+        Circle circle = new Circle(3, Color.GREEN);
+        stackPane.getChildren().add(circle);
     }
 
-    // Create a map of calendar activities for a month
     private Map<Integer, List<CalendarActivity>> createCalendarMap(List<CalendarActivity> calendarActivities) {
         Map<Integer, List<CalendarActivity>> calendarActivityMap = new HashMap<>();
 
@@ -172,7 +172,6 @@ public class CalendarController implements Initializable {
         return calendarActivityMap;
     }
 
-    // Get calendar activities for a month
     private Map<Integer, List<CalendarActivity>> getCalendarActivitiesMonth(ZonedDateTime dateFocus) {
         List<CalendarActivity> calendarActivities = new ArrayList<>();
         int year = dateFocus.getYear();
@@ -183,24 +182,9 @@ public class CalendarController implements Initializable {
         for (PersonVaccine p : checkNotificatonList()) {
             ZonedDateTime time = ZonedDateTime.of(year, month, random.nextInt(27) + 1, 16, 0, 0, 0, dateFocus.getZone());
             log.info(p.getPerson().getName());
-            CalendarActivity activity = getCalendarActivity(p, time);
-            calendarActivities.add(activity);
+            calendarActivities.add(new CalendarActivity(time));
         }
         return createCalendarMap(calendarActivities);
-    }
-
-    private static CalendarActivity getCalendarActivity(PersonVaccine p, ZonedDateTime time) {
-        CalendarActivity activity =new CalendarActivity(time);
-        String[] names = p.getPerson().getName().split("\\s+");
-        String firstName = names[0];
-        activity.setClientName(firstName);
-        String[] vaccines = p.getVaccine().getVaccineName().split("\\s+");
-        String vaccine = vaccines[0];
-        if (!Objects.equals(vaccines[1], "Vaccine")){
-            vaccine = vaccines[0]+" "+vaccines[1];
-        }
-        activity.setVaccineName(vaccine);
-        return activity;
     }
 
     private List<PersonVaccine> checkNotificatonList() {
@@ -208,7 +192,7 @@ public class CalendarController implements Initializable {
         List<PersonVaccine> personVaccineToDo = new ArrayList<>();
 
         for (Person person : personList) {
-            Period age = Period.between(Date.valueOf(String.valueOf(person.getDateOfBirth())).toLocalDate(), LocalDate.now());
+            Period age = Period.between(java.sql.Date.valueOf(String.valueOf(person.getDateOfBirth())).toLocalDate(), LocalDate.now());
             int personAge = age.getYears();
             List<Vaccine> unmadeVaccines = vaccineService.getUnassignedVaccinesForPerson(person.getId());
             if(!unmadeVaccines.isEmpty()){

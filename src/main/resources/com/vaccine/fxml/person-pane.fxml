@@ -19,17 +19,17 @@
                   <Font name="Leelawadee UI Bold" size="18.0" />
                </font>
             </Label>
-            <Label fx:id="nameLabel" layoutX="78.0" layoutY="18.0" prefHeight="17.0" prefWidth="188.0" text="Miroslava Marinova (child)" textFill="#0a090a">
+            <Label fx:id="nameLabel" layoutX="78.0" layoutY="18.0" prefHeight="17.0" prefWidth="188.0" text="Miroslava Marinova (child)" textFill="WHITE">
                <font>
                   <Font name="Leelawadee UI Bold" size="13.0" />
                </font>
             </Label>
-            <Label fx:id="vaccineLabel" layoutX="89.0" layoutY="36.0" prefHeight="17.0" prefWidth="188.0" text="Vaccine name" textFill="#0a090a">
+            <Label fx:id="vaccineLabel" layoutX="89.0" layoutY="36.0" prefHeight="17.0" prefWidth="188.0" text="Vaccine name" textFill="WHITE">
                <font>
                   <Font name="Leelawadee UI" size="13.0" />
                </font>
             </Label>
-            <Label fx:id="periodLabel" layoutX="108.0" layoutY="54.0" prefHeight="17.0" prefWidth="116.0" text="10.2024 - 12.2024" textFill="#0a090a">
+            <Label fx:id="periodLabel" layoutX="108.0" layoutY="54.0" prefHeight="17.0" prefWidth="116.0" text="10.2024 - 12.2024" textFill="WHITE">
                <font>
                   <Font name="Berlin Sans FB" size="13.0" />
                </font>

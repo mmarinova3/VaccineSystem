@@ -55,7 +55,7 @@ public class LoginController {
 
             if (currentUser != null) {
                 infoLabel.setText("Successful");
-                app.changeScene("/com/vaccine/fxml/vac-main.fxml",1000,600,true);
+                app.changeScene("/com/vaccine/fxml/vac-main.fxml",833,622,true);
             } else {
                 infoLabel.setText("Invalid username/password");
             }

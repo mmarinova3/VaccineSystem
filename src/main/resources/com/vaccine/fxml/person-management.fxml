@@ -11,7 +11,7 @@
 
 <AnchorPane id="editUserRoot" fx:id="editPersonAnchor" minHeight="0.0" minWidth="0.0" prefHeight="584.0" prefWidth="426.0" style="-fx-background-color: E0D4FC;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.vaccine.Controller.EditPersonController">
    <children>
-      <Text fontSmoothingType="LCD" layoutX="109.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EDIT PERSON INFO" wrappingWidth="228.41015625">
+      <Text fill="#43326e" fontSmoothingType="LCD" layoutX="109.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" text="EDIT PERSON INFO" wrappingWidth="228.41015625">
          <font>
             <Font name="Calibri Bold" size="27.0" />
          </font>
@@ -38,7 +38,7 @@
       <DatePicker fx:id="birthday" layoutX="81.0" layoutY="306.0" prefHeight="36.0" prefWidth="287.0" promptText="BIRTHDAY" />
       <ComboBox fx:id="relationComboBox" editable="true" layoutX="81.0" layoutY="350.0" prefHeight="36.0" prefWidth="286.0" promptText="RELATION" />
       <ComboBox fx:id="personComboBox" editable="true" layoutX="80.0" layoutY="188.0" prefHeight="36.0" prefWidth="287.0" promptText="PERSON" />
-      <Label layoutX="132.0" layoutY="169.0" text="Choose a person to edit:" textFill="#434141">
+      <Label layoutX="132.0" layoutY="169.0" text="Choose a person to edit:" textFill="#43326e">
          <font>
             <Font name="System Bold" size="13.0" />
          </font>

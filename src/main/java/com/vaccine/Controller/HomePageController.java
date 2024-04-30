@@ -4,14 +4,15 @@ import com.vaccine.Model.Entity.PersonVaccine;
 import com.vaccine.Model.Entity.Vaccine;
 import com.vaccine.Service.PersonService;
 import com.vaccine.Service.PersonVaccineService;
-import com.vaccine.Service.UserService;
 import com.vaccine.Service.VaccineService;
 import com.vaccine.Utils.Connection;
+import com.vaccine.Utils.RelationshipEnum;
 import com.vaccine.Utils.SceneNavigator;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import com.vaccine.Utils.Session;
 import com.vaccine.Model.Entity.Person;
@@ -43,17 +44,16 @@ public class HomePageController  {
     private BorderPane homePane;
     @FXML
     private Button addVaccineButton;
+    @FXML
+    private Label helloLabel;
 
-    private final UserService userService;
     private final PersonService personService;
     private final VaccineService vaccineService;
     private final PersonVaccineService personVaccineService;
-    private CalendarController calendarController;
     private final Session session = Session.getInstance();
 
     private static final Logger log = LogManager.getLogger(LoginController.class);
      public  HomePageController(){
-     this.userService = UserService.getInstance(Connection.getEntityManager(), Session.getInstance());
      this.personService = PersonService.getInstance(Connection.getEntityManager());
      this.personVaccineService = PersonVaccineService.getInstance(Connection.getEntityManager());
      this.vaccineService = VaccineService.getInstance(Connection.getEntityManager());
@@ -65,6 +65,18 @@ public class HomePageController  {
         showVaccineNotifications();
         showCalendar();
 
+
+        List<Person> people = personService.getPersonsList(session.getUser().getId());
+        for (Person p : people) {
+            if (RelationshipEnum.ME.toString().equals(p.getRelationWithUser().toUpperCase())) {
+                String[] names = p.getName().split("\\s+");
+                String firstName = names[0];
+                helloLabel.setText("Hello, " + firstName + "!");
+               break;
+            } else {
+                helloLabel.setText("Welcome!");
+            }
+        }
 
         if(!Objects.equals(session.getUser().getUsername(), "admin")){
           addVaccineButton.setVisible(false);
@@ -191,23 +203,8 @@ public class HomePageController  {
 
     @FXML
     private void showCalendar() {
-        try {
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/com/vaccine/fxml/calendar-view.fxml"));
-            AnchorPane anchorPane = fxmlLoader.load();
-            calendarController = fxmlLoader.getController();
-
-            AnchorPane.setTopAnchor(anchorPane, 0.0);
-            AnchorPane.setBottomAnchor(anchorPane, 0.0);
-            AnchorPane.setLeftAnchor(anchorPane, 0.0);
-            AnchorPane.setRightAnchor(anchorPane, 0.0);
-
-            calendarController.drawCalendar(); // Ensure calendar is drawn
-            calendarPane.getChildren().setAll(anchorPane);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+         SceneNavigator.navigateTo("/com/vaccine/fxml/small-calendar-view.fxml",calendarPane);
     }
-
 
     @FXML
     private void minimizeApp() {

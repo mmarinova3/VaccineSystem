@@ -151,7 +151,6 @@ public class PersonVaccineController {
                 String selectedItem = checkListView.getSelectionModel().getSelectedItem();
                 int vacId =findVaccineIdByName(filteredVaccines,selectedItem);
                 openDetailsPane(vaccineService.getById(vacId));
-                log.info(selectedItem);
             }
         });
 
