@@ -123,7 +123,7 @@ public class HomePageController  {
     @FXML
     private void openHomeView() throws IOException {
          Main app = new Main();
-        app.changeScene("/com/vaccine/fxml/vac-main.fxml",1000,600,true);
+        app.changeScene("/com/vaccine/fxml/vac-main.fxml",833,622,true);
     }
 
     private List<PersonVaccine> checkNotificatonList() {
@@ -175,10 +175,11 @@ public class HomePageController  {
         return newPV;
     }
     @FXML
-    private void showVaccineNotifications(){
+    private void showVaccineNotifications() {
         try {
             List<PersonVaccine> pvList = checkNotificatonList();
             if (!pvList.isEmpty()) {
+                int count = 0;
                 for (PersonVaccine pv : pvList) {
                     FXMLLoader fxmlLoader = new FXMLLoader();
                     fxmlLoader.setLocation(getClass().getResource("/com/vaccine/fxml/person-pane.fxml"));
@@ -191,6 +192,11 @@ public class HomePageController  {
                             pv.getVaccinationDate().toString()
                     );
                     personVBox.getChildren().add(anchorPane);
+                    count++;
+
+                    if (count >= 20) {
+                        break;
+                    }
                 }
 
             } else {
@@ -200,6 +206,7 @@ public class HomePageController  {
             throw new RuntimeException(e);
         }
     }
+
 
     @FXML
     private void showCalendar() {
